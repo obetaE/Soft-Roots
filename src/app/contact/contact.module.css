@@ -1,0 +1,124 @@
+.container{
+    padding: 1rem 2rem;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding-top: 5rem;
+    position: relative;
+    background-color: #31203a;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.container h1{
+    font-size: 1.6rem;
+    text-align: center;
+    font-weight: 600;
+    position: relative;
+    z-index: 700;
+    color: #F4E8FF;
+}
+
+.container h2{
+    font-size: 1.6rem;
+    text-align: center;
+    font-weight: 600;
+    position: relative;
+    z-index: 700;
+    color: #F4E8FF;
+}
+
+.center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 80vh;
+    margin-top: 1.5rem;
+    position: relative;
+    z-index: 100;
+}
+
+.bg{
+    width: 50vw;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 1rem;
+    filter: blur(2px);
+}
+
+.img{
+    object-fit: cover;
+}
+
+.form{
+    background-color: #F4E8FF;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-radius: 1rem;
+    position: relative;
+    z-index: 200;
+}
+
+.form label{
+    font-weight: 700;
+}
+
+.input{
+    width: 90%;
+    border-radius: 10px;
+}
+
+.textarea{
+    width: 100%;
+    padding: 10px;
+    border-radius: 1rem;
+    background-color: #f7f7f7; 
+}
+
+.top{
+    display: flex;
+}
+
+.bottom{
+    display: flex;
+}
+
+.button{
+    background-color: #8c18a7;
+    padding: 0.7rem 1.5rem;
+    border-radius: 1rem;
+    width: 100%;
+    color: white;
+    font-weight: 700;
+    transition: background-color 1s ease-in-out;
+}
+
+.button:hover{
+    background-color: #631175;
+}
+
+@media (max-width: 1090px){
+    .container{
+        min-height: 75vh;
+    }
+
+    .center{
+        height: 50vh;
+    }
+}

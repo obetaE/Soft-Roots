@@ -1,0 +1,463 @@
+/* home.module.css */
+.container {
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  position: relative;
+  height: 100vh;
+}
+
+.videoBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+  filter: brightness(0.7);
+}
+
+.section {
+  height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  backdrop-filter: blur(2px);
+}
+
+/* Hide scrollbar */
+.container::-webkit-scrollbar {
+  display: none;
+}
+.container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Hero Section */
+.heroSection {
+  flex-direction: column;
+  text-align: center;
+}
+
+.heroContent {
+  background: rgba(26, 26, 26, 0.7);
+  padding: 4rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  max-width: 800px;
+  backdrop-filter: blur(10px);
+  width: 90%;
+}
+
+.heroTitle {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #FFD700;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.heroSubtitle {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  color: #FFF8DC;
+  margin-bottom: 3rem;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+}
+
+.scrollIndicator {
+  display: flex;
+  justify-content: center;
+}
+
+.scrollIndicator span {
+  display: block;
+  width: 30px;
+  height: 50px;
+  border: 2px solid #FFD700;
+  border-radius: 15px;
+  position: relative;
+}
+
+.scrollIndicator span::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: #FFD700;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  animation: scroll 1.5s infinite;
+}
+
+@keyframes scroll {
+  0% { top: 10px; opacity: 1; }
+  100% { top: 30px; opacity: 0; }
+}
+
+/* Values Section */
+.valuesSection {
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding-top: 10vh;
+}
+
+.contentCard {
+  background: rgba(250, 250, 250, 0.85);
+  padding: 3rem;
+  border-radius: 16px;
+  max-width: 900px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(230, 184, 0, 0.3);
+  width: 90%;
+  margin: 0 auto;
+}
+
+.contentCard h2 {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  color: #333;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.contentCard h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  height: 3px;
+  background: #FFD700;
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.valueItem {
+  padding: 1.5rem;
+  border-left: 2px solid #FFD700;
+}
+
+.valueIcon {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #FFD700;
+  margin-bottom: 1rem;
+}
+
+.valueItem h3 {
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.valueItem p {
+  color: #666;
+  line-height: 1.6;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+/* Model Section */
+.modelSection {
+  justify-content: center;
+}
+
+.modelCard {
+  display: flex;
+  flex-direction: column;
+  background: rgba(26, 26, 26, 0.8);
+  border-radius: 16px;
+  overflow: hidden;
+  max-width: 1000px;
+  width: 90%;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.modelInfo {
+  flex: 1;
+  padding: 2rem;
+  color: #FFF8DC;
+  order: 2;
+}
+
+.modelBadge {
+  display: inline-block;
+  background: #FFD700;
+  color: #333;
+  padding: 0.3rem 1.5rem;
+  font-weight: 700;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.modelInfo h2 {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  margin-bottom: 1rem;
+  color: #FFF;
+}
+
+.modelInfo p {
+  margin-bottom: 2rem;
+  color: #FFF8DC;
+  max-width: 100%;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.featureList li {
+  padding: 0.5rem 0;
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+}
+
+.featureList li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #FFD700;
+}
+
+.modelVisual {
+  flex: 1;
+  background: rgba(255, 215, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: 300px;
+  order: 1;
+}
+
+.circleBadge {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid #FFD700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  color: #FFD700;
+}
+
+/* Tech Section */
+.techSection {
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 10vh;
+}
+
+.techGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  width: 90%;
+}
+
+.techCard {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 1.5rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(230, 184, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.techCard:hover {
+  transform: translateY(-10px);
+}
+
+.techCard h3 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: #333;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.techCard p {
+  color: #666;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+/* CTA Section */
+.ctaSection {
+  flex-direction: column;
+  text-align: center;
+}
+
+.ctaContent {
+  background: rgba(26, 26, 26, 0.9);
+  padding: 3rem;
+  border-radius: 16px;
+  max-width: 800px;
+  width: 90%;
+  border: 1px solid rgba(255, 215, 0, 0.5);
+  backdrop-filter: blur(5px);
+}
+
+.ctaContent h2 {
+  font-size: clamp(2rem, 6vw, 3rem);
+  color: #FFD700;
+  margin-bottom: 1rem;
+}
+
+.ctaContent p {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: #FFF8DC;
+  margin-bottom: 2rem;
+  max-width: 100%;
+}
+
+.ctaButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.ctaButton {
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+  min-width: 200px;
+  text-align: center;
+}
+
+.primary {
+  background: var(--button);
+  color: #333;
+}
+
+.primary:hover {
+  background: #E6B800;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(230, 184, 0, 0.4);
+}
+
+.secondary {
+  background: transparent;
+  color: #FFD700;
+  border: 2px solid #FFD700;
+}
+
+.secondary:hover {
+  background: rgba(255, 215, 0, 0.1);
+  transform: translateY(-3px);
+}
+
+/* Responsive Media Queries */
+@media (min-width: 768px) {
+  .modelCard {
+    flex-direction: row;
+  }
+  
+  .modelInfo {
+    order: 1;
+    padding: 3rem;
+  }
+  
+  .modelVisual {
+    order: 2;
+    min-height: auto;
+  }
+  
+  .techGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  
+  .ctaButtons {
+    flex-wrap: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 1rem;
+  }
+  
+  .heroContent {
+    padding: 2rem 1.5rem;
+  }
+  
+  .heroTitle {
+    letter-spacing: 0.1em;
+  }
+  
+  .contentCard {
+    padding: 1.5rem;
+  }
+  
+  .modelInfo {
+    padding: 1.5rem;
+  }
+  
+  .circleBadge {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .ctaContent {
+    padding: 2rem 1.5rem;
+  }
+  
+  .ctaButton {
+    min-width: 100%;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 500px) and (orientation: landscape) {
+  .section {
+    height: auto;
+    min-height: 100vh;
+    padding: 1rem 0;
+  }
+  
+  .heroContent,
+  .contentCard,
+  .modelCard,
+  .ctaContent {
+    padding: 1.5rem;
+  }
+  
+  .modelCard {
+    flex-direction: row;
+  }
+  
+  .techGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

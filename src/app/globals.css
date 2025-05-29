@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --button: #FFD700; /*For buttons and CTAs, key highlights, hovers*/
+  --nav: #E6B800; /* Navbar and section heads*/
+  --background: #FFF8DC; /*BG and Info Highlights*/
+  --footer: #333333; /*Footer and texts*/
+  --secbg: #FAFAFA; /*Second bg and input fields*/
+  --hover: #2E4057;
+}
+
+input{
+  @apply w-[400px] border border-gray-200 py-2 px-6 bg-zinc-100/40;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+     /* background-color: var(--background); */
+  /* margin: 0 15px; */
+}

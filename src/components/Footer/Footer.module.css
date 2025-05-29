@@ -1,0 +1,79 @@
+.container {
+  padding: 12px 2rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: #0c0115;
+  width: 100%;
+  overflow: hidden;
+}
+
+.top {
+  display: flex;
+  /* align-items: center; */
+  padding-bottom: 1rem;
+  justify-content: space-between;
+  border-bottom: solid rgba(255, 255, 255, 0.2) 1px;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.top p {
+  font-size: 1.5rem;
+}
+
+.subscribe {
+  /* width: 30%; */
+  display: flex;
+  gap: min(1.5rem, 6%);
+  align-items: center;
+}
+
+.button {
+  padding: 10px;
+  background-color: var(--button);
+}
+
+.bottom {
+  width: 100%;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse; /* Remove gaps between table cells */
+  table-layout: fixed; /* Ensure columns have consistent widths */
+}
+
+.thead tr {
+  font-size: 1.2rem;
+  color: #ff1493;
+  text-align: left; /* Align header content to the left */
+}
+
+.tbody tr {
+  font-weight: 700;
+  text-align: left; /* Align all content in table rows to the left */
+}
+
+.tbody tr td {
+  vertical-align: left; /* Align content vertically in the center */
+}
+
+.table th:first-child, .table td:first-child {
+  width: 4%; /* Smallest width for the * column */
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Add spacing between icon and text */
+}
+
+.socials span {
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.links img {
+  border-radius: 50%; /* Optional: Make icons circular */
+}
