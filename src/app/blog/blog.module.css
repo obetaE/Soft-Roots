@@ -1,0 +1,705 @@
+/* app/blog/blog.module.css */
+.container {
+    position: relative;
+    overflow-x: hidden;
+    color: white;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .videoBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    pointer-events: none;
+    filter: brightness(0.7);
+  }
+  
+  /* Hero Section */
+  .heroSection {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .heroContent {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(26, 26, 26, 0.7);
+    padding: 4rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    backdrop-filter: blur(10px);
+  }
+  
+  .heroTitle {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #FFD700;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    line-height: 1.2;
+  }
+  
+  .heroSubtitle {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: #FFF8DC;
+    margin-bottom: 3rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+  
+  /* Blog Content Section */
+  .blogSection {
+    padding: 4rem 2rem;
+    background: rgba(10, 10, 10, 0.8);
+  }
+  
+  .blogContainer {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    gap: 3rem;
+  }
+  
+  .mainContent {
+    flex: 2;
+  }
+  
+  .sidebar {
+    flex: 1;
+  }
+  
+  /* Category Filter */
+  .categoryFilter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .categoryButton {
+    background: transparent;
+    color: #FFF8DC;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    padding: 0.8rem 1.5rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .categoryButton:hover {
+    border-color: #FFD700;
+    color: #FFD700;
+  }
+  
+  .categoryButton.active {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: #FFD700;
+    color: #FFD700;
+  }
+  
+  /* Posts Grid */
+  .postsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+  }
+  
+  .postCard {
+    background: rgba(26, 26, 26, 0.7);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+  }
+  
+  .postCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    border-color: #FFD700;
+  }
+  
+  .postImage {
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .postContent {
+    padding: 1.8rem;
+  }
+  
+  .postMeta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .postCategory {
+    background: rgba(255, 215, 0, 0.1);
+    color: #FFD700;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .postDate {
+    color: rgba(255, 248, 220, 0.7);
+  }
+  
+  .postTitle {
+    font-size: 1.5rem;
+    color: #FFF;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  
+  .postExcerpt {
+    color: #FFF8DC;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  
+  .postFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .postAuthor {
+    color: rgba(255, 248, 220, 0.7);
+    font-size: 0.9rem;
+  }
+  
+  .readMore {
+    color: #FFD700;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .readMore:hover {
+    text-decoration: underline;
+  }
+  
+  /* Pagination */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .paginationButton {
+    background: transparent;
+    color: #FFF8DC;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    padding: 0.8rem 1.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .paginationButton:hover {
+    border-color: #FFD700;
+    color: #FFD700;
+  }
+  
+  .pageNumber {
+    color: #FFF8DC;
+    font-size: 0.9rem;
+  }
+  
+  /* Sidebar */
+  .sidebarCard {
+    background: rgba(26, 26, 26, 0.7);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    backdrop-filter: blur(5px);
+    margin-bottom: 2rem;
+  }
+  
+  .sidebarTitle {
+    font-size: 1.4rem;
+    color: #FFD700;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.8rem;
+  }
+  
+  .sidebarTitle::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: #FFD700;
+  }
+  
+  .sidebarText {
+    color: #FFF8DC;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Recent Posts */
+  .recentPosts {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .recentPostItem {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+  }
+  
+  .recentPostItem:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  
+  .recentPostImage {
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+  }
+  
+  .recentPostTitle {
+    font-size: 1rem;
+    color: #FFF;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  
+  .recentPostDate {
+    color: rgba(255, 248, 220, 0.7);
+    font-size: 0.8rem;
+  }
+  
+  /* Categories */
+  .categoriesList {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .categoryItem {
+    margin-bottom: 0.8rem;
+  }
+  
+  .categoryLink {
+    background: transparent;
+    border: none;
+    color: #FFF8DC;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    position: relative;
+  }
+  
+  .categoryLink:hover {
+    color: #FFD700;
+  }
+  
+  .categoryLink::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #FFD700;
+    transition: width 0.3s ease;
+  }
+  
+  .categoryLink:hover::after {
+    width: 100%;
+  }
+  
+  /* Newsletter */
+  .newsletterForm {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .newsletterInput {
+    flex: 1;
+    padding: 0.8rem;
+    background: rgba(15, 15, 15, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    color: white;
+  }
+  
+  .newsletterButton {
+    background: var(--button);
+    color: #333;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .newsletterButton:hover {
+    background: #E6B800;
+  }
+  
+  /* CTA Section */
+  .ctaSection {
+    padding: 6rem 2rem;
+    background: rgba(10, 10, 10, 0.9);
+    text-align: center;
+  }
+  
+  .ctaContent {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .ctaContent h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: #FFD700;
+    margin-bottom: 1rem;
+  }
+  
+  .ctaContent p {
+    color: #FFF8DC;
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    margin-bottom: 2rem;
+  }
+  
+  .ctaButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+  }
+  
+  .ctaButton {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    min-width: 250px;
+    text-align: center;
+  }
+  
+  .primary {
+    background: var(--button);
+    color: #333;
+  }
+  
+  .primary:hover {
+    background: #E6B800;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(230, 184, 0, 0.4);
+  }
+  
+  .secondary {
+    background: transparent;
+    color: #FFD700;
+    border: 2px solid #FFD700;
+  }
+  
+  .secondary:hover {
+    background: rgba(255, 215, 0, 0.1);
+    transform: translateY(-3px);
+  }
+
+  /* Blog Post Specific Styles */
+.blogPostSection {
+  padding: 4rem 2rem;
+  background: rgba(10, 10, 10, 0.8);
+}
+
+.blogPostContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.postFeaturedImage {
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 16px;
+  margin-bottom: 3rem;
+}
+
+.postContent {
+  background: rgba(26, 26, 26, 0.7);
+  border-radius: 16px;
+  padding: 3rem;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.postBody {
+  color: #FFF8DC;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.postBody h2,
+.postBody h3,
+.postBody h4 {
+  color: #FFD700;
+  margin: 2rem 0 1rem;
+}
+
+.postBody p {
+  margin-bottom: 1.5rem;
+}
+
+.postBody ul {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.postBody li {
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+
+.postBody li::before {
+  content: '•';
+  position: absolute;
+  left: -1rem;
+  color: #FFD700;
+}
+
+.postFooter {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.authorInfo {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.authorAvatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 215, 0, 0.1);
+  border: 2px solid #FFD700;
+}
+
+.shareSection h4 {
+  color: #FFF;
+  margin-bottom: 1rem;
+}
+
+.shareButtons {
+  display: flex;
+  gap: 1rem;
+}
+
+.shareButtons button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #FFD700;
+  color: #FFD700;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.shareButtons button:hover {
+  background: rgba(255, 215, 0, 0.1);
+}
+
+.backButton {
+  display: inline-block;
+  color: #FFD700;
+  text-decoration: none;
+  font-weight: 600;
+  margin-top: 2rem;
+  transition: all 0.3s ease;
+}
+
+.backButton:hover {
+  text-decoration: underline;
+}
+
+/* Related Posts */
+.relatedSection {
+  padding: 4rem 2rem;
+  background: rgba(15, 15, 15, 0.9);
+}
+
+.relatedSection h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #FFD700;
+  margin-bottom: 3rem;
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.relatedCard {
+  background: rgba(26, 26, 26, 0.7);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.relatedCard:hover {
+  transform: translateY(-5px);
+  border-color: #FFD700;
+}
+
+.relatedImage {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.relatedContent {
+  padding: 1.5rem;
+}
+
+.relatedCategory {
+  display: inline-block;
+  background: rgba(255, 215, 0, 0.1);
+  color: #FFD700;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.relatedContent h3 {
+  font-size: 1.3rem;
+  color: #FFF;
+  margin-bottom: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .postFooter {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .postFeaturedImage {
+    height: 300px;
+  }
+  
+  .relatedGrid {
+    grid-template-columns: 1fr;
+  }
+}
+  
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .blogContainer {
+      flex-direction: column;
+    }
+    
+    .postsGrid {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .heroSection {
+      min-height: 50vh;
+    }
+    
+    .heroContent {
+      padding: 2.5rem;
+    }
+    
+    .blogSection {
+      padding: 3rem 1.5rem;
+    }
+    
+    .postImage {
+      height: 180px;
+    }
+    
+    .ctaSection {
+      padding: 4rem 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .heroSection {
+      padding: 1.5rem;
+    }
+    
+    .heroContent {
+      padding: 1.8rem;
+    }
+    
+    .postsGrid {
+      grid-template-columns: 1fr;
+    }
+    
+    .categoryFilter {
+      justify-content: center;
+    }
+    
+    .ctaButton {
+      min-width: 100%;
+    }
+    
+    .recentPostItem {
+      flex-direction: column;
+    }
+    
+    .recentPostImage {
+      width: 100%;
+      height: 150px;
+    }
+    
+    .newsletterForm {
+      flex-direction: column;
+    }
+  }

@@ -155,6 +155,7 @@
   
   .mobileMenu {
     position: fixed;
+    padding-top: 2rem;
     top: 0;
     right: -100%;
     width: 70%;

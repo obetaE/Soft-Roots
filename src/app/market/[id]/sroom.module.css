@@ -1,45 +1,29 @@
 .container{
-    /* padding: 1rem 2rem; */
+    padding: 1rem 2rem;
     min-height: 100vh;
     min-height: 100dvh;
     padding-top: 5rem;
     position: relative;
 }
 
-.header{
-  position: relative;
-  height: 30vh;
-  background-image: url("https://images.unsplash.com/photo-1444201983204-c43cbd584d93?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 1;
-  overflow: hidden;
-  text-align: center;
-  color: white;
-  font-size: 4rem;
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+.back{
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: 700;
+    background: #8c18a7;
+    transition: all 1s ease;
+    padding: 11px 1.3rem;
+    border-radius: 1rem;
+    gap: 3px;
+    width: max-content;
 }
 
-.header span{
-  font-size: 1rem;
+.back:hover{
+    transform: scale(1.1);
+    background: #974649;
 }
 
-.body{
-  padding: 1rem 2rem; 
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.reverse{
-  flex-direction: row-reverse;
-}
-
-/* Card container */
 .card {
   display: flex;
   background-color: #31203a; /* equivalent to bg-base-100 */
@@ -53,8 +37,14 @@
 .cardimage {
   flex-shrink: 0;
   width: 50%; /* or any size you prefer */
-  height: 19rem;
+  height: 23.5rem;
   position: relative;
+}
+
+.top{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .img {
@@ -143,7 +133,7 @@
 /* Actions container */
 .cardactions {
   display: flex;
-  justify-content: flex-start; /* justify-end */
+  justify-content: space-between; /* justify-end */
   margin-top: 1rem;
 }
 
@@ -162,4 +152,14 @@
 
 .btn:hover {
   background-color: #974649; /* darker blue on hover */
+}
+
+.desc{
+    margin-top: 12px;
+}
+
+.amenities{
+  color: #ffffff;
+  font-weight: 600;
+  margin-top: 12px;
 }

@@ -1,4 +1,4 @@
-/* app/contact/contact.module.css */
+/* app/book-test-drive/book-test-drive.module.css */
 .container {
     position: relative;
     overflow-x: hidden;
@@ -31,6 +31,11 @@
   .heroContent {
     max-width: 800px;
     margin: 0 auto;
+    background: rgba(26, 26, 26, 0.7);
+    padding: 4rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    backdrop-filter: blur(10px);
   }
   
   .heroTitle {
@@ -52,91 +57,60 @@
     letter-spacing: 0.05em;
   }
   
-  /* Contact Section */
-  .contactSection {
+  /* Content Section */
+  .contentSection {
     padding: 4rem 2rem;
     background: rgba(10, 10, 10, 0.8);
   }
   
-  .contactContainer {
+  .contentContainer {
     max-width: 1400px;
     margin: 0 auto;
     display: flex;
     gap: 3rem;
   }
   
-  .contactInfo {
+  .formSection {
     flex: 1;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
   }
   
-  .infoCard {
-    background: rgba(26, 26, 26, 0.7);
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    border-radius: 16px;
-    padding: 2rem;
-    backdrop-filter: blur(5px);
-    transition: all 0.3s ease;
-  }
-  
-  .infoCard:hover {
-    transform: translateY(-5px);
-    border-color: #FFD700;
-    box-shadow: 0 10px 25px rgba(255, 215, 0, 0.1);
-  }
-  
-  .infoIcon {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: rgba(255, 215, 0, 0.1);
-    border: 2px solid #FFD700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-  }
-  
-  .infoIcon svg {
-    width: 30px;
-    height: 30px;
-    fill: #FFD700;
-  }
-  
-  .infoCard h3 {
-    font-size: 1.5rem;
-    color: #FFD700;
-    margin-bottom: 1rem;
-  }
-  
-  .infoCard p {
-    color: #FFF8DC;
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
-    line-height: 1.6;
-  }
-  
-  .contactForm {
-    flex: 1;
-    background: rgba(26, 26, 26, 0.7);
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    border-radius: 16px;
-    padding: 2.5rem;
-    backdrop-filter: blur(5px);
-  }
-  
-  .formTitle {
+  .sectionTitle {
     font-size: clamp(1.8rem, 4vw, 2.2rem);
     color: #FFD700;
     margin-bottom: 0.5rem;
+    position: relative;
+    padding-bottom: 1rem;
   }
   
-  .formSubtitle {
+  .sectionTitle::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: #FFD700;
+  }
+  
+  .sectionSubtitle {
     color: #FFF8DC;
-    margin-bottom: 2rem;
     font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .form {
+    background: rgba(26, 26, 26, 0.7);
+    border-radius: 16px;
+    padding: 2.5rem;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    backdrop-filter: blur(5px);
+  }
+  
+  .formGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
   }
   
   .formGroup {
@@ -147,10 +121,11 @@
     display: block;
     margin-bottom: 0.5rem;
     color: #FFF8DC;
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
   
   .formGroup input,
+  .formGroup select,
   .formGroup textarea {
     width: 100%;
     padding: 1rem;
@@ -163,6 +138,7 @@
   }
   
   .formGroup input:focus,
+  .formGroup select:focus,
   .formGroup textarea:focus {
     outline: none;
     border-color: #FFD700;
@@ -175,18 +151,17 @@
   }
   
   .submitButton {
+    width: 100%;
     background: var(--button);
     color: #333;
     border: none;
-    padding: 1rem 2rem;
+    padding: 1.2rem;
     border-radius: 4px;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
     text-transform: uppercase;
     font-size: 1.1rem;
-    width: 100%;
-    position: relative;
   }
   
   .submitButton:hover {
@@ -198,108 +173,162 @@
   .submitButton:disabled {
     background: rgba(255, 215, 0, 0.5);
     cursor: not-allowed;
-  }
-  
-  .spinner {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 3px solid rgba(51, 51, 51, 0.3);
-    border-radius: 50%;
-    border-top-color: #333;
-    animation: spin 1s ease-in-out infinite;
-  }
-  
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-  
-  .successMessage,
-  .errorMessage {
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-    font-size: 1.1rem;
+    transform: none;
+    box-shadow: none;
   }
   
   .successMessage {
-    background: rgba(40, 167, 69, 0.2);
-    border: 1px solid rgba(40, 167, 69, 0.5);
-    color: #28a745;
-  }
-  
-  .errorMessage {
-    background: rgba(220, 53, 69, 0.2);
-    border: 1px solid rgba(220, 53, 69, 0.5);
-    color: #dc3545;
-  }
-  
-  /* Map Section */
-  .mapSection {
-    padding: 4rem 2rem;
-    background: rgba(15, 15, 15, 0.9);
-  }
-  
-  .mapContainer {
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  
-  .mapPlaceholder {
-    height: 500px;
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                url('https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
-    background-size: cover;
-    background-position: center;
+    background: rgba(26, 26, 26, 0.7);
     border-radius: 16px;
-    position: relative;
-    border: 1px solid rgba(255, 215, 0, 0.3);
-  }
-  
-  .mapOverlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    padding: 3rem;
     text-align: center;
-    padding: 2rem;
-    background: rgba(10, 10, 10, 0.6);
-    border-radius: 16px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    backdrop-filter: blur(5px);
   }
   
-  .mapOverlay h2 {
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
+  .successMessage h3 {
+    font-size: 1.8rem;
     color: #FFD700;
     margin-bottom: 1rem;
   }
   
-  .mapOverlay p {
+  .successMessage p {
     color: #FFF8DC;
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    max-width: 600px;
-  }
-  
-  .directionsButton {
-    background: transparent;
-    color: #FFD700;
-    border: 2px solid #FFD700;
-    padding: 1rem 2.5rem;
-    border-radius: 4px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
+    margin-bottom: 1.5rem;
     font-size: 1.1rem;
+    line-height: 1.6;
   }
   
-  .directionsButton:hover {
+  .confirmationNumber {
+    display: inline-block;
     background: rgba(255, 215, 0, 0.1);
+    color: #FFD700;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-top: 1rem;
+  }
+  
+  /* Model Section */
+  .modelSection {
+    flex: 1;
+  }
+  
+  .modelContainer {
+    height: 100%;
+    background: rgba(26, 26, 26, 0.7);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    backdrop-filter: blur(5px);
+    position: relative;
+  }
+  
+  .spline-container {
+    width: 100%;
+    height: 500px;
+    position: relative;
+  }
+  
+  .spline-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+  }
+  
+  .modelInfo {
+    padding: 2rem;
+    background: rgba(10, 10, 10, 0.8);
+    border-top: 1px solid rgba(255, 215, 0, 0.2);
+  }
+  
+  .modelInfo h3 {
+    font-size: 1.5rem;
+    color: #FFD700;
+    margin-bottom: 0.5rem;
+  }
+  
+  .modelInfo p {
+    color: #FFF8DC;
+    margin-bottom: 1rem;
+  }
+  
+  .featureList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .featureList li {
+    padding: 0.5rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+    color: #FFF8DC;
+  }
+  
+  .featureList li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #FFD700;
+  }
+  
+  /* Experience Section */
+  .experienceSection {
+    padding: 4rem 2rem;
+    background: rgba(15, 15, 15, 0.9);
+  }
+  
+  .experienceContainer {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .experienceSection h2 {
+    text-align: center;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: #FFD700;
+    margin-bottom: 3rem;
+  }
+  
+  .experienceGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .experienceCard {
+    background: rgba(26, 26, 26, 0.7);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    backdrop-filter: blur(5px);
+    text-align: center;
+  }
+  
+  .experienceIcon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #FFD700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #FFD700;
+  }
+  
+  .experienceCard h3 {
+    font-size: 1.3rem;
+    color: #FFF;
+    margin-bottom: 1rem;
+  }
+  
+  .experienceCard p {
+    color: #FFF8DC;
+    line-height: 1.6;
   }
   
   /* CTA Section */
@@ -370,12 +399,12 @@
   
   /* Responsive Design */
   @media (max-width: 1024px) {
-    .contactContainer {
+    .contentContainer {
       flex-direction: column;
     }
     
-    .contactInfo {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    .spline-container {
+      height: 400px;
     }
   }
   
@@ -384,31 +413,37 @@
       min-height: 50vh;
     }
     
-    .contactSection,
-    .mapSection,
-    .ctaSection {
-      padding: 3rem 1.5rem;
+    .heroContent {
+      padding: 2.5rem;
     }
     
-    .mapPlaceholder {
-      height: 400px;
+    .formGrid {
+      grid-template-columns: 1fr;
     }
-  }
-  
-  @media (max-width: 480px) {
-    .heroSection {
-      padding: 2rem 1rem;
+    
+    .experienceGrid {
+      grid-template-columns: 1fr;
     }
     
     .ctaButton {
       min-width: 100%;
     }
-    
-    .infoCard {
+  }
+  
+  @media (max-width: 480px) {
+    .heroSection {
       padding: 1.5rem;
     }
     
-    .contactForm {
+    .heroContent {
+      padding: 1.8rem;
+    }
+    
+    .form {
       padding: 1.5rem;
+    }
+    
+    .spline-container {
+      height: 300px;
     }
   }

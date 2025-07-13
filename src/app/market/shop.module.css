@@ -1,0 +1,611 @@
+/* shop.module.css */
+.container {
+  position: relative;
+  overflow-x: hidden;
+  color: white;
+  font-family: 'Arial', sans-serif;
+}
+
+.videoBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  pointer-events: none;
+  filter: brightness(0.7);
+}
+
+.section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Hero Section */
+.heroSection {
+  text-align: center;
+  padding-top: 6rem;
+}
+
+.heroContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.heroTitle {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #FFD700;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  line-height: 1.2;
+}
+
+.heroSubtitle {
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  color: #FFF8DC;
+  margin-bottom: 3rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+}
+
+/* Categories Section */
+.categoriesSection {
+  background: rgba(10, 10, 10, 0.8);
+}
+
+.categoriesContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 90%;
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: #FFD700;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: #FFD700;
+}
+
+.sectionSubtitle {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: #FFF8DC;
+  margin-bottom: 3rem;
+}
+
+.categoryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.categoryCard {
+  background: rgba(26, 26, 26, 0.7);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.categoryCard:hover, 
+.categoryCard.active {
+  background: rgba(255, 215, 0, 0.15);
+  transform: translateY(-5px);
+  border-color: #FFD700;
+}
+
+.categoryIcon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255, 215, 0, 0.1);
+  border: 2px solid #FFD700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #FFD700;
+}
+
+.categoryCard h3 {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: #FFF8DC;
+  margin: 0;
+}
+
+/* Products Section */
+.productsSection {
+  background: rgba(15, 15, 15, 0.85);
+}
+
+.productsContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 90%;
+}
+
+.carouselHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.carouselArrow {
+  background: rgba(255, 215, 0, 0.2);
+  border: 2px solid #FFD700;
+  color: #FFD700;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carouselArrow:hover {
+  background: rgba(255, 215, 0, 0.3);
+  transform: scale(1.1);
+}
+
+.carouselContent {
+  flex: 1;
+}
+
+.productCard {
+  display: flex;
+  background: rgba(26, 26, 26, 0.8);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+.productImage {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.productImage img {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.productInfo {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.productName {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  color: #FFD700;
+  margin-bottom: 0.5rem;
+}
+
+.productPrice {
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  color: #FFF;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.productFeatures {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.productFeatures li {
+  padding: 0.5rem 0;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  color: #FFF8DC;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.productFeatures li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #FFD700;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.productActions {
+  display: flex;
+  justify-content: center;
+}
+
+.cartButton {
+  background: var(--button);
+  color: #333;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  min-width: 200px;
+}
+
+.cartButton:hover {
+  background: #E6B800;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(230, 184, 0, 0.4);
+}
+
+.carouselIndicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.activeIndicator {
+  background: #FFD700;
+  transform: scale(1.3);
+}
+
+/* Customization Section */
+.customizationSection {
+  background: rgba(10, 10, 10, 0.9);
+}
+
+.customizationContainer {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 90%;
+  text-align: center;
+}
+
+.customizationArea {
+  display: flex;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.splineContainer {
+  flex: 1.5;
+  height: 500px;
+  background: rgba(20, 20, 20, 0.7);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.customizationOptions {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background: rgba(26, 26, 26, 0.7);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  text-align: left;
+}
+
+.optionGroup h3 {
+  color: #FFD700;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.colorOptions {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.colorOption {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.colorOption:hover {
+  transform: scale(1.1);
+}
+
+.colorOption.selected {
+  border-color: #FFD700;
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.wheelOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.wheelOption {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  padding: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  color: #FFF;
+}
+
+.wheelOption:hover, .selectedWheel {
+  background: rgba(255, 215, 0, 0.15);
+  border-color: #FFD700;
+  transform: translateY(-3px);
+}
+
+.customizeButton {
+  background: transparent;
+  color: #FFD700;
+  border: 2px solid #FFD700;
+  padding: 1rem;
+  border-radius: 4px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+.customizeButton:hover {
+  background: rgba(255, 215, 0, 0.1);
+}
+
+/* CTA Section */
+.ctaSection {
+  background: rgba(15, 15, 15, 0.9);
+}
+
+.ctaContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 90%;
+  display: flex;
+  gap: 2rem;
+}
+
+.cartSummary {
+  flex: 1;
+  background: rgba(26, 26, 26, 0.7);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.cartSummary h2 {
+  font-size: 1.8rem;
+  color: #FFD700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.cartItems {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+.cartItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cartItemName {
+  color: #FFF8DC;
+  font-size: 1.1rem;
+}
+
+.cartItemPrice {
+  color: #FFD700;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.emptyCart {
+  text-align: center;
+  color: #FFF8DC;
+  padding: 2rem 0;
+  font-size: 1.1rem;
+}
+
+.cartTotal {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.3rem;
+  font-weight: 700;
+  padding: 1.5rem 0;
+  color: #FFD700;
+  border-top: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.ctaContent {
+  flex: 1.5;
+  text-align: center;
+  padding: 2rem;
+  background: rgba(26, 26, 26, 0.7);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ctaContent h2 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: #FFD700;
+  margin-bottom: 1rem;
+}
+
+.ctaContent p {
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  color: #FFF8DC;
+  margin-bottom: 2rem;
+}
+
+.ctaButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.ctaButton {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  min-width: 250px;
+  text-align: center;
+}
+
+.primary {
+  background: var(--button);
+  color: #333;
+}
+
+.primary:hover {
+  background: #E6B800;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(230, 184, 0, 0.4);
+}
+
+.secondary {
+  background: transparent;
+  color: #FFD700;
+  border: 2px solid #FFD700;
+}
+
+.secondary:hover {
+  background: rgba(255, 215, 0, 0.1);
+  transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .customizationArea {
+    flex-direction: column;
+  }
+  
+  .splineContainer {
+    height: 400px;
+  }
+  
+  .ctaContainer {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .productCard {
+    flex-direction: column;
+  }
+  
+  .productImage {
+    padding: 1.5rem;
+  }
+  
+  .productInfo {
+    padding: 1.5rem;
+  }
+  
+  .carousel {
+    gap: 0.5rem;
+  }
+  
+  .carouselArrow {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 1.5rem;
+  }
+  
+  .heroSection {
+    padding-top: 4rem;
+  }
+  
+  .categoryGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .carouselArrow {
+    width: 35px;
+    height: 35px;
+    font-size: 1.2rem;
+  }
+  
+  .ctaButton {
+    min-width: 100%;
+  }
+}

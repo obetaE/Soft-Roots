@@ -51,7 +51,7 @@ export default function Navbar() {
           </div>
 
           <div className={styles.ctaContainer}>
-            <button className={styles.ctaButton}>BOOK A TEST DRIVE</button>
+            <Link href="/book" className={styles.ctaButton}>BOOK A TEST DRIVE</Link>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -76,7 +76,7 @@ export default function Navbar() {
               {link.title}
             </Link>
           ))}
-          <button className={styles.mobileCta}>BOOK A TEST DRIVE</button>
+          <Link href="/book" className={styles.mobileCta}>BOOK A TEST DRIVE</Link>
         </div>
       </div>
     </>

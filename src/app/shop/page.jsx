@@ -1,215 +1,305 @@
-import React from 'react'
-import styles from "./room.module.css"
-import Image from "next/image"
-import Link from "next/link"
+"use client";
+import styles from "./shop.module.css";
+import { useState } from "react";
+import Link from "next/link";
 
-const roomsAndSuites = [
-  {
-    index: 1,
-    name: "Single Room",
-    tagline: "Cozy, perfect for solo travelers",
-    description: "A comfortable space designed for solo guests seeking tranquility and modern convenience. Enjoy a peaceful stay with all the essentials at your fingertips.",
-    image: "/landing.jpg",
-    amenities: [
-      "Free Wi-Fi",
-      "Flat-screen TV",
-      "Air Conditioning",
-      "Work Desk",
-      "Private Bathroom"
-    ]
-  },
-  {
-    index: 2,
-    name: "Double Room",
-    tagline: "Ideal for couples, with city views",
-    description: "Spacious and stylish, our Double Rooms are ideal for couples. Unwind with stunning city views, plush bedding, and contemporary décor.",
-    image: "/landing.jpg",
-    amenities: [
-      "Free Wi-Fi",
-      "City View",
-      "Queen Bed",
-      "Mini Fridge",
-      "Complimentary Breakfast"
-    ]
-  },
-  {
-    index: 3,
-    name: "Deluxe Room",
-    tagline: "Extra space, premium amenities",
-    description: "Upgrade your stay with our Deluxe Rooms featuring additional space, upscale furnishings, and enhanced amenities for a truly relaxing experience.",
-    image: "/landing.jpg",
-    amenities: [
-      "Free Wi-Fi",
-      "King Bed",
-      "Luxury Linens",
-      "Coffee Maker",
-      "Bathrobe & Slippers"
-    ]
-  },
-  {
-    index: 4,
-    name: "Junior Suite",
-    tagline: "Lounge area, modern design",
-    description: "Perfect for extended stays or added comfort, our Junior Suites include a separate lounge area with modern design elements and luxurious touches.",
-    image: "/landing.jpg",
-    amenities: [
-      "Separate Living Area",
-      "King Bed",
-      "2 Smart TVs",
-      "Mini Bar",
-      "Room Service"
-    ]
-  },
-  {
-    index: 5,
-    name: "Executive Suite",
-    tagline: "Business luxury, smart amenities",
-    description: "Designed for business travelers, the Executive Suite combines productivity with relaxation. Enjoy smart amenities, a workspace, and high-speed connectivity.",
-    image: "/landing.jpg",
-    amenities: [
-      "Dedicated Workspace",
-      "High-Speed Internet",
-      "Conference Call Setup",
-      "Complimentary Breakfast",
-      "Iron & Ironing Board"
-    ]
-  },
-  {
-    index: 6,
-    name: "Presidential Suite",
-    tagline: "VIP experience, top-tier living",
-    description: "Indulge in unparalleled luxury with our Presidential Suite. This expansive space features elegant interiors, private services, and breathtaking cityscape views.",
-    image: "/landing.jpg",
-    amenities: [
-      "Private Butler",
-      "Personalized Services",
-      "Jacuzzi",
-      "Private Balcony",
-      "Premium Entertainment System"
-    ]
-  },
-  {
-    index: 7,
-    name: "Penthouse Suite",
-    tagline: "Panoramic views, ultimate luxury",
-    description: "Our Penthouse Suite offers a lavish experience with panoramic skyline views, a private terrace, and exquisite furnishings for those who demand the best.",
-    image: "/landing.jpg",
-    amenities: [
-      "Private Terrace",
-      "Panoramic City Views",
-      "Exclusive Elevator Access",
-      "Spa Bath",
-      "Gourmet Kitchenette"
-    ]
-  },
-  {
-    index: 8,
-    name: "Family Suite",
-    tagline: "Spacious, family-friendly features",
-    description: "Ideal for family getaways, these suites offer ample space, multiple sleeping arrangements, and kid-friendly amenities for a comfortable stay.",
-    image: "/landing.jpg",
-    amenities: [
-      "Multiple Beds",
-      "Kids' Play Area",
-      "Childproof Rooms",
-      "Board Games",
-      "Baby Cot (on request)"
-    ]
-  },
-  {
-    index: 9,
-    name: "Neon Nights Suite",
-    tagline: "Nightlife vibe, neon lighting, party feel",
-    description: "Immerse yourself in the vibrant nightlife energy of our Neon Nights Suite. Featuring bold neon lighting and a lively ambiance, it's perfect for party enthusiasts.",
-    image: "/landing.jpg",
-    amenities: [
-      "Neon Light Decor",
-      "Sound System",
-      "Party Area",
-      "Mood Lighting Control",
-      "Mini Bar"
-    ]
-  },
-  {
-    index: 10,
-    name: "Accessible Room",
-    tagline: "Wheelchair accessible, convenient layout",
-    description: "Thoughtfully designed for accessibility, these rooms offer convenience, spacious layouts, and mobility-friendly amenities without compromising on comfort.",
-    image: "/landing.jpg",
-    amenities: [
-      "Wheelchair Access",
-      "Roll-in Shower",
-      "Grab Bars in Bathroom",
-      "Lowered Light Switches",
-      "Accessible Bed Height"
-    ]
-  }
-];
+const ShopPage = () => {
+  const [activeCategory, setActiveCategory] = useState("All");
 
+  const categories = ["All", "Trucks", "Accessories", "Merchandise"];
 
-const Room = () => {
+  const products = [
+    {
+      id: 1,
+      name: "Pioneer Edition Luxury Truck",
+      price: 149999,
+      category: "Trucks",
+      image:
+        "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      description:
+        "Our flagship luxury truck with handcrafted interior and advanced technology",
+      features: [
+        "550HP Twin-Turbo Engine",
+        "Handcrafted Leather Interior",
+        "Smart Suspension System",
+      ],
+      specs: {
+        engine: "4.0L V8 Twin-Turbo",
+        horsepower: "550 HP",
+        torque: "650 lb-ft",
+        transmission: "10-Speed Automatic",
+        seating: "5",
+        towing: "12,500 lbs",
+      },
+    },
+    {
+      id: 2,
+      name: "Adventurer Edition",
+      price: 129999,
+      category: "Trucks",
+      image:
+        "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      description:
+        "Designed for the explorer who demands luxury and capability",
+      features: [
+        "All-Terrain Package",
+        "Extended Range Fuel Tank",
+        "Heavy-Duty Suspension",
+      ],
+      specs: {
+        engine: "3.5L V6 Twin-Turbo",
+        horsepower: "450 HP",
+        torque: "510 lb-ft",
+        transmission: "10-Speed Automatic",
+        seating: "5",
+        towing: "11,000 lbs",
+      },
+    },
+    {
+      id: 3,
+      name: "Premium Off-Road Package",
+      price: 12500,
+      category: "Accessories",
+      image:
+        "https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      description:
+        "Enhance your truck's capabilities with our premium off-road package",
+      features: [
+        "Enhanced suspension",
+        "All-terrain tires",
+        "Underbody protection",
+      ],
+    },
+    {
+      id: 4,
+      name: "Luxury Interior Upgrade",
+      price: 8500,
+      category: "Accessories",
+      image:
+        "https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      description:
+        "Upgrade your cabin with premium materials and comfort features",
+      features: [
+        "Premium leather seats",
+        "Custom wood trim",
+        "Heated & ventilated seats",
+      ],
+    },
+    {
+      id: 5,
+      name: "Carbon Fiber Running Boards",
+      price: 3200,
+      category: "Accessories",
+      image:
+        "https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      description: "Lightweight and durable running boards for easy access",
+      features: [
+        "Carbon fiber construction",
+        "Anti-slip surface",
+        "Integrated lighting",
+      ],
+    },
+    {
+      id: 6,
+      name: "Soft Roots Signature Jacket",
+      price: 299,
+      category: "Merchandise",
+      image:
+        "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      description: "Premium jacket featuring Soft Roots branding",
+      features: ["Waterproof", "Insulated", "Multiple pockets"],
+    },
+    {
+      id: 7,
+      name: "Limited Edition Truck Model",
+      price: 199,
+      category: "Merchandise",
+      image:
+        "https://images.unsplash.com/photo-1566877779089-1e0d0a0e1b1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      description: "1:18 scale die-cast model of the Pioneer Edition",
+      features: [
+        "Premium packaging",
+        "Display stand",
+        "Certificate of authenticity",
+      ],
+    },
+    {
+      id: 8,
+      name: "Soft Roots Leather Keychain",
+      price: 89,
+      category: "Merchandise",
+      image:
+        "https://images.unsplash.com/photo-1584735175097-719d848f8449?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+      description: "Handcrafted leather keychain with metal emblem",
+      features: ["Genuine leather", "Solid metal emblem", "Lifetime warranty"],
+    },
+  ];
+
+  const filteredProducts =
+    activeCategory === "All"
+      ? products
+      : products.filter((product) => product.category === activeCategory);
+
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        Rooms & Suites
-        <span>"Enjoy the best of Luxury and Comfort"</span>
-      </div>
+      <video
+        className={styles.videoBackground}
+        src="https://cdn.pixabay.com/video/2024/09/09/230471_tiny.mp4"
+        muted
+        playsInline
+        loop
+        autoPlay
+      />
 
-      <div className={styles.body}>
-        {roomsAndSuites.map((room, idx) => (
-          <div
-            key={room.index}
-            className={`${styles.card} ${idx % 2 !== 0 ? styles.reverse : ""}`}
-          >
-            {/* Image Container */}
-            <div className={styles.cardimage}>
-              <Image
-                src={room.image}
-                className={styles.img}
-                fill
-                alt={room.name}
-              />
+      {/* Hero Section */}
+      <section className={styles.heroSection}>
+        <div className={styles.heroContent}>
+          <h1 className={styles.heroTitle}>SOFT ROOTS COLLECTION</h1>
+          <p className={styles.heroSubtitle}>
+            Luxury Trucks and Premium Accessories
+          </p>
+        </div>
+      </section>
+
+      {/* Shop Content */}
+      <section className={styles.shopSection}>
+        <div className={styles.shopContainer}>
+          {/* Sidebar */}
+          <aside className={styles.sidebar}>
+            <div className={styles.sidebarCard}>
+              <h2 className={styles.sidebarTitle}>Categories</h2>
+              <ul className={styles.categoryList}>
+                {categories.map((category) => (
+                  <li
+                    key={category}
+                    className={`${styles.categoryItem} ${
+                      activeCategory === category ? styles.active : ""
+                    }`}
+                    onClick={() => setActiveCategory(category)}
+                  >
+                    {category}
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            {/* Card Content */}
-            <div className={styles.cardbody}>
-              <div className={styles.review}>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <span>13 reviews</span>
-              </div>
-
-              <div className={styles.cardhead}>
-                <h2 className={styles.cardtitle}>{room.name}</h2>
-                <p>{`"${room.tagline}"`}</p>
-              </div>
-
-              <div className={styles.details}>
-                <div className={styles.detstatus}>
-                  <span className={styles.status}>STATUS:</span>{" "}
-                  <span className={styles.available}>Available</span>
+            <div className={styles.sidebarCard}>
+              <h2 className={styles.sidebarTitle}>Filter By Price</h2>
+              <div className={styles.priceFilter}>
+                <input
+                  type="range"
+                  min="0"
+                  max="200000"
+                  className={styles.priceSlider}
+                />
+                <div className={styles.priceRange}>
+                  <span>$0</span>
+                  <span>$200,000</span>
                 </div>
-
-                <p className={styles.pernight}>
-                  Starts from <span className={styles.price}>$234</span>
-                  <span className={styles.night}>/PER NIGHT</span>
-                </p>
-              </div>
-
-              <div className={styles.cardactions}>
-                <Link href={`/room/${room.index}`} className={styles.btn}>
-                  VIEW ROOM
-                </Link>
               </div>
             </div>
+
+            <div className={styles.sidebarCard}>
+              <h2 className={styles.sidebarTitle}>Best Sellers</h2>
+              <ul className={styles.bestSellers}>
+                {products.slice(0, 3).map((product) => (
+                  <li key={product.id} className={styles.bestSellerItem}>
+                    <div
+                      className={styles.bestSellerImage}
+                      style={{ backgroundImage: `url(${product.image})` }}
+                    />
+                    <div>
+                      <h3 className={styles.bestSellerTitle}>{product.name}</h3>
+                      <span className={styles.bestSellerPrice}>
+                        ${product.price.toLocaleString()}
+                      </span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </aside>
+
+          {/* Product Grid */}
+          <div className={styles.productGrid}>
+            {filteredProducts.map((product) => (
+              <div key={product.id} className={styles.productCard}>
+                <div
+                  className={styles.productImage}
+                  style={{ backgroundImage: `url(${product.image})` }}
+                />
+                <div className={styles.productInfo}>
+                  <span className={styles.productCategory}>
+                    {product.category}
+                  </span>
+                  <h3 className={styles.productName}>{product.name}</h3>
+                  <p className={styles.productDescription}>
+                    {product.description}
+                  </p>
+
+                  {product.features && (
+                    <ul className={styles.featureList}>
+                      {product.features.map((feature, index) => (
+                        <li key={index} className={styles.featureItem}>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  {product.specs && (
+                    <div className={styles.specsGrid}>
+                      <div className={styles.specItem}>
+                        <span>Engine</span>
+                        <strong>{product.specs.engine}</strong>
+                      </div>
+                      <div className={styles.specItem}>
+                        <span>Horsepower</span>
+                        <strong>{product.specs.horsepower}</strong>
+                      </div>
+                      <div className={styles.specItem}>
+                        <span>Torque</span>
+                        <strong>{product.specs.torque}</strong>
+                      </div>
+                      <div className={styles.specItem}>
+                        <span>Seating</span>
+                        <strong>{product.specs.seating}</strong>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className={styles.productFooter}>
+                    <span className={styles.productPrice}>
+                      ${product.price.toLocaleString()}
+                    </span>
+                    <button className={styles.addToCartButton}>
+                      ADD TO CART
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className={styles.ctaSection}>
+        <div className={styles.ctaContent}>
+          <h2>NEED PERSONAL ASSISTANCE?</h2>
+          <p>Our luxury consultants are ready to help</p>
+          <div className={styles.ctaButtons}>
+            <button className={`${styles.ctaButton} ${styles.primary}`}>
+              SCHEDULE CONSULTATION
+            </button>
+            <button className={`${styles.ctaButton} ${styles.secondary}`}>
+              CALL NOW: 1-800-SOFTROOTS
+            </button>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
 
-export default Room;
+export default ShopPage;
