@@ -178,7 +178,8 @@
   .mobileNav {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.6rem;
+    padding-top: 2rem;
   }
   
   .mobileLink {

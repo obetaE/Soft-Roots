@@ -3,8 +3,8 @@ import { blogPosts } from "@/libs/blogData";
 import { notFound } from "next/navigation";
 import Link from "next/link"
 
-export default function BlogPostPage({ params }) {
-  const postId = parseInt(params.id);
+export default async function BlogPostPage({ params }) {
+  const postId = await parseInt(params.id);
   const post = blogPosts.find((p) => p.id === postId);
 
   if (!post) return notFound();

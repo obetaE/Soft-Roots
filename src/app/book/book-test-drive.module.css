@@ -1,4 +1,3 @@
-/* app/book-test-drive/book-test-drive.module.css */
 .container {
     position: relative;
     overflow-x: hidden;
@@ -411,6 +410,7 @@
   @media (max-width: 768px) {
     .heroSection {
       min-height: 50vh;
+      padding-top: 2rem;
     }
     
     .heroContent {
@@ -433,6 +433,7 @@
   @media (max-width: 480px) {
     .heroSection {
       padding: 1.5rem;
+      padding-top: 5rem;
     }
     
     .heroContent {

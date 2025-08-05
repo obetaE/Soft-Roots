@@ -1,4 +1,3 @@
-/* about.module.css */
 .container {
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
@@ -188,7 +187,7 @@
   .leadershipSection {
     justify-content: center;
     align-items: flex-start;
-    padding-top: 10vh;
+    padding-top: 20vh;
   }
   
   .leadershipGrid {
@@ -218,11 +217,32 @@
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background: rgba(255, 215, 0, 0.1);
+    /* background: rgba(255, 215, 0, 0.1); */
     margin: 0 auto 1.5rem;
     border: 2px solid #FFD700;
     position: relative;
   }
+  
+    .Michael{
+      background-image: url("https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmxhY2slMjBtYW58ZW58MHx8MHx8fDA%3D");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  
+    .Sarah{
+      background-image: url("https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmxhY2slMjBtYW58ZW58MHx8MHx8fDA%3Dhttps://plus.unsplash.com/premium_photo-1661730351855-346069d20ef5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmxhY2slMjB3b21hbnxlbnwwfHwwfHx8MA%3D%3D");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  
+    .David{
+      background-image: url("https://images.unsplash.com/photo-1615851943632-ffb942c2fceb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d2hpdGUlMjBtYW58ZW58MHx8MHx8fDA%3D");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
   
   .leaderCard h3 {
     font-size: clamp(1.2rem, 3vw, 1.5rem);

@@ -1,4 +1,3 @@
-/* app/blog/blog.module.css */
 .container {
     position: relative;
     overflow-x: hidden;
@@ -356,6 +355,7 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 4px;
     color: white;
+    width: 100%;
   }
   
   .newsletterButton {
@@ -518,7 +518,10 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: rgba(255, 215, 0, 0.1);
+  background-image: url("https://images.unsplash.com/photo-1615109398623-88346a601842?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2hpdGUlMjBtYW58ZW58MHx8MHx8fDA%3D");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
   border: 2px solid #FFD700;
 }
 
@@ -667,6 +670,21 @@
     .ctaSection {
       padding: 4rem 1.5rem;
     }
+
+    .authorInfo{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .authorInfo h4, .authorInfo p{
+      text-align: center;
+    }
+
+    .shareButtons{
+      display: flex;
+      flex-direction: column;
+    }
   }
   
   @media (max-width: 480px) {
@@ -676,6 +694,7 @@
     
     .heroContent {
       padding: 1.8rem;
+      padding-top: 5rem;
     }
     
     .postsGrid {
@@ -700,6 +719,11 @@
     }
     
     .newsletterForm {
+      flex-direction: column;
+    }
+
+    .shareButtons{
+      display: flex;
       flex-direction: column;
     }
   }

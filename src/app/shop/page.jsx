@@ -115,7 +115,7 @@ const ShopPage = () => {
       price: 199,
       category: "Merchandise",
       image:
-        "https://images.unsplash.com/photo-1566877779089-1e0d0a0e1b1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1670069247956-1a6dfee5338e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGJpZyUyMGNhcnN8ZW58MHx8MHx8fDA%3D",
       description: "1:18 scale die-cast model of the Pioneer Edition",
       features: [
         "Premium packaging",

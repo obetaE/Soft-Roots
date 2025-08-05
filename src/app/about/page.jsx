@@ -117,7 +117,7 @@ const AboutPage = () => {
       <section className={`${styles.section} ${styles.leadershipSection}`}>
         <div className={styles.leadershipGrid}>
           <div className={styles.leaderCard}>
-            <div className={styles.leaderImage}></div>
+            <div className={`${styles.leaderImage} ${styles.Michael}`}></div>
             <h3>Michael Reynolds</h3>
             <p>Founder & CEO</p>
             <div className={styles.socialLinks}>
@@ -127,7 +127,7 @@ const AboutPage = () => {
             </div>
           </div>
           <div className={styles.leaderCard}>
-            <div className={styles.leaderImage}></div>
+            <div className={`${styles.leaderImage} ${styles.Sarah}`}></div>
             <h3>Sarah Johnson</h3>
             <p>Chief Engineer</p>
             <div className={styles.socialLinks}>
@@ -137,7 +137,7 @@ const AboutPage = () => {
             </div>
           </div>
           <div className={styles.leaderCard}>
-            <div className={styles.leaderImage}></div>
+            <div className={`${styles.leaderImage} ${styles.David}`}></div>
             <h3>David Chen</h3>
             <p>Design Director</p>
             <div className={styles.socialLinks}>
