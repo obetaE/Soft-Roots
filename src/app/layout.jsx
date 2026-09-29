@@ -1,38 +1,65 @@
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/Navbar/Navbar"
+import localFont from "next/font/local";
 import Footer from "@/components/Footer/Footer";
-import { Playfair_Display } from "next/font/google";
+import Navbar from "@/components/Navbar/Navbar";
+import { site } from "@/libs/site";
+import "./globals.css";
 
-const playfairDisplay = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "700"],
+// Self-hosted variable fonts (SIL OFL 1.1, licenses alongside), so builds never depend on the network.
+const sans = localFont({
+  src: "./fonts/Geist-Variable.woff2",
+  weight: "100 900",
+  variable: "--font-sans",
+  display: "swap",
 });
 
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const display = localFont({
+  src: "./fonts/PlayfairDisplay-Variable.woff2",
+  weight: "400 900",
+  variable: "--font-display",
+  display: "swap",
+  adjustFontFallback: "Times New Roman",
 });
 
 export const metadata = {
-  title: "Soft Roots",
-  description: "Bringing you the best from the world of trucks",
+  metadataBase: new URL(site.url),
+  title: {
+    default: `${site.name} | ${site.tagline}`,
+    template: `%s | ${site.name}`,
+  },
+  description: site.description,
+  applicationName: site.name,
+  keywords: ["luxury trucks", "truck dealership", "truck configurator", "test drive", "Soft Roots", "Fjord F-100 Heritage"],
+  openGraph: {
+    type: "website",
+    siteName: site.name,
+    locale: "en_US",
+    title: `${site.name} | ${site.tagline}`,
+    description: site.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} | ${site.tagline}`,
+    description: site.description,
+  },
+};
+
+export const viewport = {
+  themeColor: "#0a0a0a",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${playfairDisplay.className} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en" className={`${sans.variable} ${display.variable}`}>
+      <body>
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
         <Navbar />
-        {children}
+        <main id="main-content" tabIndex={-1}>
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

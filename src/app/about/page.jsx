@@ -1,195 +1,139 @@
-"use client";
-import { useRef, useEffect, useState } from "react";
+import Image from "next/image";
+import CtaSection from "@/components/CtaSection/CtaSection";
+import VideoBackground from "@/components/VideoBackground/VideoBackground";
+import ui from "@/components/ui/ui.module.css";
 import styles from "./about.module.css";
 
-const AboutPage = () => {
-  const videoRef = useRef(null);
-  const containerRef = useRef(null);
-  const [videoDuration, setVideoDuration] = useState(0);
-  const scrolling = useRef(false);
-  const rafId = useRef(null);
-
-  // Initialize video and scroll container
-  useEffect(() => {
-    const video = videoRef.current;
-
-    const handleLoadedMetadata = () => {
-      setVideoDuration(video.duration);
-      containerRef.current.style.height = "500vh"; // 5 sections
-    };
-
-    video.addEventListener("loadedmetadata", handleLoadedMetadata);
-    video.play().catch(() => {}); // Auto-play with mute
-
-    return () => {
-      video.removeEventListener("loadedmetadata", handleLoadedMetadata);
-      if (rafId.current) cancelAnimationFrame(rafId.current);
-    };
-  }, []);
-
-  // Handle scroll events
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container || !videoDuration) return;
-
-    const updateVideoTime = () => {
-      const scrollTop = container.scrollTop;
-      const maxScroll = container.scrollHeight - window.innerHeight;
-      const scrollFraction = scrollTop / maxScroll;
-
-      // Calculate video time
-      const videoTime = (scrollFraction * videoDuration * 2) % videoDuration;
-      videoRef.current.currentTime = Math.min(videoTime, videoDuration);
-
-      scrolling.current = false;
-    };
-
-    const handleScroll = () => {
-      if (!scrolling.current) {
-        scrolling.current = true;
-        rafId.current = requestAnimationFrame(updateVideoTime);
-      }
-    };
-
-    container.addEventListener("scroll", handleScroll);
-    return () => container.removeEventListener("scroll", handleScroll);
-  }, [videoDuration]);
-
-  return (
-    <div className={styles.container} ref={containerRef}>
-      <video
-        ref={videoRef}
-        className={styles.videoBackground}
-        src="https://cdn.pixabay.com/video/2024/09/09/230471_tiny.mp4"
-        muted
-        playsInline
-        loop
-      />
-
-      {/* Section 1: Hero */}
-      <section className={`${styles.section} ${styles.heroSection}`}>
-        <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle}>OUR STORY</h1>
-          <p className={styles.heroSubtitle}>The journey of Soft Roots</p>
-          <div className={styles.scrollIndicator}>
-            <span></span>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 2: History */}
-      <section className={`${styles.section} ${styles.historySection}`}>
-        <div className={styles.timeline}>
-          <div className={styles.timelineItem}>
-            <div className={styles.year}>2010</div>
-            <h3 className={styles.timelineTitle}>Founding Vision</h3>
-            <p>
-              Soft Roots was founded in a small Detroit garage with a vision to
-              revolutionize luxury trucks
-            </p>
-          </div>
-          <div className={styles.timelineItem}>
-            <div className={styles.year}>2015</div>
-            <h3 className={styles.timelineTitle}>First Prototype</h3>
-            <p>
-              Our first hybrid luxury truck prototype set new industry standards
-            </p>
-          </div>
-          <div className={styles.timelineItem}>
-            <div className={styles.year}>2020</div>
-            <h3 className={styles.timelineTitle}>Global Recognition</h3>
-            <p>
-              Awarded "Most Innovative Truck Manufacturer" at the Global Auto
-              Expo
-            </p>
-          </div>
-          <div className={styles.timelineItem}>
-            <div className={styles.year}>2023</div>
-            <h3 className={styles.timelineTitle}>Sustainable Future</h3>
-            <p>
-              Launched our fully electric luxury truck line with zero emissions
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 3: Leadership */}
-      <section className={`${styles.section} ${styles.leadershipSection}`}>
-        <div className={styles.leadershipGrid}>
-          <div className={styles.leaderCard}>
-            <div className={`${styles.leaderImage} ${styles.Michael}`}></div>
-            <h3>Michael Reynolds</h3>
-            <p>Founder & CEO</p>
-            <div className={styles.socialLinks}>
-              <span className={styles.socialIcon}></span>
-              <span className={styles.socialIcon}></span>
-              <span className={styles.socialIcon}></span>
-            </div>
-          </div>
-          <div className={styles.leaderCard}>
-            <div className={`${styles.leaderImage} ${styles.Sarah}`}></div>
-            <h3>Sarah Johnson</h3>
-            <p>Chief Engineer</p>
-            <div className={styles.socialLinks}>
-              <span className={styles.socialIcon}></span>
-              <span className={styles.socialIcon}></span>
-              <span className={styles.socialIcon}></span>
-            </div>
-          </div>
-          <div className={styles.leaderCard}>
-            <div className={`${styles.leaderImage} ${styles.David}`}></div>
-            <h3>David Chen</h3>
-            <p>Design Director</p>
-            <div className={styles.socialLinks}>
-              <span className={styles.socialIcon}></span>
-              <span className={styles.socialIcon}></span>
-              <span className={styles.socialIcon}></span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 4: Innovation */}
-      <section className={`${styles.section} ${styles.innovationSection}`}>
-        <div className={styles.innovationContent}>
-          <h2>THE FUTURE OF MOBILITY</h2>
-          <div className={styles.innovationGrid}>
-            <div className={styles.innovationCard}>
-              <div className={styles.innovationIcon}>01</div>
-              <h3>AI-Powered Systems</h3>
-              <p>Adaptive intelligence that learns your driving preferences</p>
-            </div>
-            <div className={styles.innovationCard}>
-              <div className={styles.innovationIcon}>02</div>
-              <h3>Eco Engineering</h3>
-              <p>Sustainable materials and zero-emission power systems</p>
-            </div>
-            <div className={styles.innovationCard}>
-              <div className={styles.innovationIcon}>03</div>
-              <h3>Digital Integration</h3>
-              <p>Seamless connectivity with your digital ecosystem</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 5: CTA */}
-      <section className={`${styles.section} ${styles.ctaSection}`}>
-        <div className={styles.ctaContent}>
-          <h2>JOIN OUR JOURNEY</h2>
-          <p>Become part of the Soft Roots legacy</p>
-          <div className={styles.ctaButtons}>
-            <button className={`${styles.ctaButton} ${styles.primary}`}>
-              CAREERS
-            </button>
-            <button className={`${styles.ctaButton} ${styles.secondary}`}>
-              INVESTOR RELATIONS
-            </button>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
+export const metadata = {
+  title: "About Us",
+  description:
+    "From a single-bay Detroit workshop in 2010 to a luxury truck dealership with its own customization studio: the story, people and vision behind Soft Roots.",
+  alternates: { canonical: "/about" },
 };
 
-export default AboutPage;
+const milestones = [
+  {
+    year: "2010",
+    title: "The First Bay",
+    text: "Soft Roots opened as a single-bay Detroit workshop, customizing work trucks for local crews.",
+  },
+  {
+    year: "2015",
+    title: "Our First Showroom",
+    text: "We moved into a restored warehouse and began selling curated trucks alongside our custom work.",
+  },
+  {
+    year: "2020",
+    title: "The Customization Studio",
+    text: "An in-house paint booth and suspension lab let us finish every truck under one roof.",
+  },
+  {
+    year: "2024",
+    title: "Build It Online",
+    text: "Our 3D configurator brought the studio experience to anyone with a browser.",
+  },
+];
+
+const leaders = [
+  {
+    name: "Michael Reynolds",
+    role: "Founder & CEO",
+    image: "https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?auto=format&fit=crop&w=400&q=80",
+  },
+  {
+    name: "Sarah Johnson",
+    role: "Head of Customization",
+    image: "https://plus.unsplash.com/premium_photo-1661730351855-346069d20ef5?auto=format&fit=crop&w=400&q=80",
+  },
+  {
+    name: "David Chen",
+    role: "Design Director",
+    image: "https://images.unsplash.com/photo-1615851943632-ffb942c2fceb?auto=format&fit=crop&w=400&q=80",
+  },
+];
+
+const innovations = [
+  { title: "Configure in 3D", text: "See every option on your truck before you commit to it" },
+  { title: "One Roof", text: "Sales, paint, suspension and service in the same building" },
+  { title: "Lifetime Support", text: "Servicing and upgrades for every truck we sell" },
+];
+
+export default function AboutPage() {
+  return (
+    <div className={`${ui.page} ${ui.snapPage}`}>
+      <VideoBackground scrub />
+
+      <section className={ui.snapSection}>
+        <div className={styles.heroCard}>
+          <h1 className={styles.heroTitle}>Our Story</h1>
+          <p className={styles.heroSubtitle}>The journey of Soft Roots</p>
+          <a href="#history" className={styles.scrollIndicator} aria-label="Scroll to our history">
+            <span />
+          </a>
+        </div>
+      </section>
+
+      <section id="history" aria-labelledby="history-title" className={ui.snapSection}>
+        <h2 id="history-title" className="visually-hidden">
+          Our history
+        </h2>
+        <ol className={styles.timeline}>
+          {milestones.map((milestone) => (
+            <li key={milestone.year} className={styles.milestone}>
+              <span className={styles.year}>{milestone.year}</span>
+              <h3>{milestone.title}</h3>
+              <p>{milestone.text}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section aria-labelledby="leadership-title" className={ui.snapSection}>
+        <div className={styles.leadership}>
+          <h2 id="leadership-title" className={`${ui.sectionTitle} ${ui.sectionTitleCenter}`}>
+            Leadership
+          </h2>
+          <ul className={styles.leaderGrid}>
+            {leaders.map((leader) => (
+              <li key={leader.name} className={styles.leaderCard}>
+                <Image
+                  src={leader.image}
+                  alt={`Portrait of ${leader.name}`}
+                  width={120}
+                  height={120}
+                  className={styles.leaderImage}
+                />
+                <h3>{leader.name}</h3>
+                <p>{leader.role}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section aria-labelledby="innovation-title" className={ui.snapSection}>
+        <div className={styles.innovation}>
+          <h2 id="innovation-title">Why Soft Roots</h2>
+          <ol className={styles.innovationGrid}>
+            {innovations.map((item, index) => (
+              <li key={item.title} className={styles.innovationCard}>
+                <span className={styles.innovationNumber} aria-hidden="true">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <CtaSection
+        title="Join our journey"
+        text="Become part of the Soft Roots legacy"
+        action={{ href: "/contact", label: "Get in Touch" }}
+        className={`${ui.snapSection} ${ui.ctaCard}`}
+      />
+    </div>
+  );
+}

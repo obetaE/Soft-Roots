@@ -1,529 +1,284 @@
-.container {
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
-    position: relative;
-    height: 100vh;
-  }
-  
-  .videoBackground {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    z-index: -1;
-    pointer-events: none;
-    filter: brightness(0.7);
-  }
-  
-  .section {
-    height: 100vh;
-    scroll-snap-align: start;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    backdrop-filter: blur(2px);
-  }
-  
-  /* Hide scrollbar */
-  .container::-webkit-scrollbar {
-    display: none;
-  }
-  .container {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  
-  /* Hero Section */
-  .heroSection {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .heroContent {
-    background: rgba(26, 26, 26, 0.7);
-    padding: 4rem;
-    border-radius: 16px;
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    max-width: 800px;
-    backdrop-filter: blur(10px);
-    width: 90%;
-  }
-  
-  .heroTitle {
-    font-size: clamp(2.5rem, 8vw, 5rem);
-    font-weight: 800;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #FFD700;
-    margin-bottom: 1rem;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  }
-  
-  .heroSubtitle {
-    font-size: clamp(1rem, 3vw, 1.5rem);
-    color: #FFF8DC;
-    margin-bottom: 3rem;
-    font-weight: 300;
-    letter-spacing: 0.1em;
-  }
-  
-  .scrollIndicator {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .scrollIndicator span {
-    display: block;
-    width: 30px;
-    height: 50px;
-    border: 2px solid #FFD700;
-    border-radius: 15px;
-    position: relative;
-  }
-  
-  .scrollIndicator span::after {
-    content: '';
-    position: absolute;
+/* Hero */
+.heroCard {
+  width: min(800px, 100%);
+  padding: clamp(2rem, 6vw, 4rem);
+  background: rgba(26, 26, 26, 0.7);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius);
+  backdrop-filter: blur(10px);
+  text-align: center;
+}
+
+.heroTitle {
+  margin-bottom: 1rem;
+  color: var(--gold);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  line-height: 1.1;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+}
+
+.heroSubtitle {
+  margin-bottom: 3rem;
+  color: var(--cream);
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+}
+
+.scrollIndicator {
+  display: inline-flex;
+  padding: 0.25rem;
+}
+
+.scrollIndicator span {
+  position: relative;
+  display: block;
+  width: 30px;
+  height: 50px;
+  border: 2px solid var(--gold);
+  border-radius: 15px;
+}
+
+.scrollIndicator span::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  transform: translateX(-50%);
+  animation: scrollHint 1.5s infinite;
+}
+
+@keyframes scrollHint {
+  from {
     top: 10px;
-    left: 50%;
-    width: 6px;
-    height: 6px;
-    background: #FFD700;
-    border-radius: 50%;
-    transform: translateX(-50%);
-    animation: scroll 1.5s infinite;
+    opacity: 1;
   }
-  
-  @keyframes scroll {
-    0% { top: 10px; opacity: 1; }
-    100% { top: 30px; opacity: 0; }
+  to {
+    top: 30px;
+    opacity: 0;
   }
-  
-  /* History Section */
-  .historySection {
-    justify-content: center;
-    align-items: flex-start;
-    padding-top: 10vh;
-  }
-  
-  .timeline {
-    background: rgba(250, 250, 250, 0.85);
-    padding: 3rem;
-    border-radius: 16px;
-    max-width: 900px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(230, 184, 0, 0.3);
-    width: 90%;
-    position: relative;
-  }
-  
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  width: min(900px, 100%);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: rgba(250, 250, 250, 0.88);
+  border: 1px solid rgba(230, 184, 0, 0.3);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  list-style: none;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 3rem;
+  bottom: 3rem;
+  left: 50%;
+  width: 4px;
+  background: var(--gold);
+  transform: translateX(-50%);
+}
+
+.milestone {
+  position: relative;
+  width: calc(50% - 2.5rem);
+  padding: 1.5rem 2rem;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.milestone + .milestone {
+  margin-top: 1.5rem;
+}
+
+.milestone:nth-child(odd) {
+  border-right: 3px solid var(--gold);
+}
+
+.milestone:nth-child(even) {
+  margin-left: auto;
+  border-left: 3px solid var(--gold);
+}
+
+.year {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #8a6d00;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.milestone h3 {
+  margin-bottom: 0.5rem;
+  color: #222;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+}
+
+.milestone p {
+  color: #555;
+}
+
+/* Leadership */
+.leadership {
+  width: min(1200px, 100%);
+}
+
+.leaderGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+  gap: 2rem;
+  list-style: none;
+}
+
+.leaderCard {
+  padding: 2rem;
+  background: rgba(26, 26, 26, 0.85);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius);
+  backdrop-filter: blur(5px);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.leaderCard:hover {
+  transform: translateY(-10px);
+}
+
+.leaderImage {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1.5rem;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.leaderCard h3 {
+  margin-bottom: 0.5rem;
+  color: var(--gold);
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+}
+
+.leaderCard p {
+  color: var(--cream);
+}
+
+/* Innovation */
+.innovation {
+  width: min(1000px, 100%);
+  padding: clamp(1.5rem, 5vw, 3rem);
+  background: rgba(250, 250, 250, 0.88);
+  border: 1px solid rgba(230, 184, 0, 0.3);
+  border-radius: var(--radius);
+  backdrop-filter: blur(5px);
+}
+
+.innovation h2 {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  color: #222;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.innovation h2::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 100px;
+  height: 3px;
+  background: var(--gold);
+  transform: translateX(-50%);
+}
+
+.innovationGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+  gap: 2rem;
+  list-style: none;
+}
+
+.innovationCard {
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.innovationCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.innovationNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #1a1a1a;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.innovationCard h3 {
+  margin-bottom: 1rem;
+  color: #222;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+}
+
+.innovationCard p {
+  color: #555;
+}
+
+@media (max-width: 768px) {
   .timeline::before {
-    content: '';
-    position: absolute;
-    top: 3rem;
-    bottom: 3rem;
-    left: 50%;
-    width: 4px;
-    background: #FFD700;
-    transform: translateX(-50%);
-    z-index: 1;
+    left: 1.5rem;
   }
-  
-  .timelineItem {
-    position: relative;
-    padding: 1.5rem 2rem;
-    margin-bottom: 2rem;
-    width: 50%;
-    z-index: 2;
-    backdrop-filter: blur(5px);
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+  .milestone,
+  .milestone:nth-child(even) {
+    width: auto;
+    margin-left: 1.75rem;
+    border-right: none;
+    border-left: 3px solid var(--gold);
   }
-  
-  .timelineItem:nth-child(odd) {
-    margin-left: 0;
-    border-left: 3px solid #FFD700;
+
+  .milestone {
+    padding: 1.25rem 1.5rem;
   }
-  
-  .timelineItem:nth-child(even) {
-    margin-left: 50%;
-    border-right: 3px solid #FFD700;
-  }
-  
-  .year {
-    position: absolute;
-    top: 1rem;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #FFD700;
-  }
-  
-  .timelineItem:nth-child(odd) .year {
-    right: -80px;
-  }
-  
-  .timelineItem:nth-child(even) .year {
-    left: -80px;
-  }
-  
-  .timelineTitle {
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
-    color: #333;
-    margin-bottom: 0.5rem;
-  }
-  
-  .timelineItem p {
-    color: #666;
-    line-height: 1.6;
-    font-size: clamp(0.9rem, 2.5vw, 1rem);
-  }
-  
-  /* Leadership Section */
-  .leadershipSection {
-    justify-content: center;
-    align-items: flex-start;
-    padding-top: 20vh;
-  }
-  
-  .leadershipGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    width: 90%;
-  }
-  
-  .leaderCard {
-    background: rgba(26, 26, 26, 0.85);
-    border-radius: 16px;
-    overflow: hidden;
-    text-align: center;
-    padding: 2rem;
-    border: 1px solid rgba(255, 215, 0, 0.3);
-    backdrop-filter: blur(5px);
-    transition: transform 0.3s ease;
-  }
-  
-  .leaderCard:hover {
-    transform: translateY(-10px);
-  }
-  
-  .leaderImage {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    /* background: rgba(255, 215, 0, 0.1); */
-    margin: 0 auto 1.5rem;
-    border: 2px solid #FFD700;
-    position: relative;
-  }
-  
-    .Michael{
-      background-image: url("https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmxhY2slMjBtYW58ZW58MHx8MHx8fDA%3D");
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-  
-    .Sarah{
-      background-image: url("https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmxhY2slMjBtYW58ZW58MHx8MHx8fDA%3Dhttps://plus.unsplash.com/premium_photo-1661730351855-346069d20ef5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmxhY2slMjB3b21hbnxlbnwwfHwwfHx8MA%3D%3D");
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-  
-    .David{
-      background-image: url("https://images.unsplash.com/photo-1615851943632-ffb942c2fceb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d2hpdGUlMjBtYW58ZW58MHx8MHx8fDA%3D");
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-  
-  .leaderCard h3 {
-    font-size: clamp(1.2rem, 3vw, 1.5rem);
-    color: #FFD700;
-    margin-bottom: 0.5rem;
-  }
-  
-  .leaderCard p {
-    color: #FFF8DC;
-    margin-bottom: 1.5rem;
-  }
-  
-  .socialLinks {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-  }
-  
-  .socialIcon {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: rgba(255, 215, 0, 0.2);
-    border: 1px solid #FFD700;
-    display: inline-block;
-    transition: all 0.3s ease;
-  }
-  
-  .socialIcon:hover {
-    background: #FFD700;
-  }
-  
-  /* Innovation Section */
-  .innovationSection {
-    justify-content: center;
-  }
-  
-  .innovationContent {
-    background: rgba(250, 250, 250, 0.85);
-    padding: 3rem;
-    border-radius: 16px;
-    max-width: 1000px;
-    width: 90%;
-    border: 1px solid rgba(230, 184, 0, 0.3);
-    backdrop-filter: blur(5px);
-  }
-  
-  .innovationContent h2 {
-    font-size: clamp(1.8rem, 5vw, 2.5rem);
-    color: #333;
-    text-align: center;
-    margin-bottom: 2rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    position: relative;
-    padding-bottom: 1rem;
-  }
-  
-  .innovationContent h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100px;
-    height: 3px;
-    background: #FFD700;
-  }
-  
-  .innovationGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-  }
-  
+
+  .leaderCard,
   .innovationCard {
-    padding: 2rem;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    transition: all 0.3s ease;
+    padding: 1.5rem;
   }
-  
-  .innovationCard:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    letter-spacing: 0.1em;
   }
-  
-  .innovationIcon {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: #FFD700;
-    color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin: 0 auto 1.5rem;
-  }
-  
-  .innovationCard h3 {
-    font-size: clamp(1.2rem, 3vw, 1.5rem);
-    color: #333;
-    margin-bottom: 1rem;
-  }
-  
-  .innovationCard p {
-    color: #666;
-    font-size: clamp(0.9rem, 2.5vw, 1rem);
-  }
-  
-  /* CTA Section */
-  .ctaSection {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .ctaContent {
-    background: rgba(26, 26, 26, 0.9);
-    padding: 3rem;
-    border-radius: 16px;
-    max-width: 800px;
-    width: 90%;
-    border: 1px solid rgba(255, 215, 0, 0.5);
-    backdrop-filter: blur(5px);
-  }
-  
-  .ctaContent h2 {
-    font-size: clamp(2rem, 6vw, 3rem);
-    color: #FFD700;
-    margin-bottom: 1rem;
-  }
-  
-  .ctaContent p {
-    font-size: clamp(1rem, 3vw, 1.2rem);
-    color: #FFF8DC;
-    margin-bottom: 2rem;
-    max-width: 100%;
-  }
-  
-  .ctaButtons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-  }
-  
-  .ctaButton {
-    padding: 1rem 1.5rem;
-    border: none;
-    border-radius: 4px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: clamp(0.9rem, 2.5vw, 1rem);
-    min-width: 200px;
-    text-align: center;
-  }
-  
-  .primary {
-    background: var(--button);
-    color: #333;
-  }
-  
-  .primary:hover {
-    background: #E6B800;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(230, 184, 0, 0.4);
-  }
-  
-  .secondary {
-    background: transparent;
-    color: #FFD700;
-    border: 2px solid #FFD700;
-  }
-  
-  .secondary:hover {
-    background: rgba(255, 215, 0, 0.1);
-    transform: translateY(-3px);
-  }
-  
-  /* Responsive Media Queries */
-  @media (max-width: 992px) {
-    .timeline::before {
-      left: 30px;
-    }
-    
-    .timelineItem {
-      width: calc(100% - 80px);
-      margin-left: 80px !important;
-      border-left: 3px solid #FFD700 !important;
-      border-right: none !important;
-    }
-    
-    .timelineItem:nth-child(odd) .year,
-    .timelineItem:nth-child(even) .year {
-      left: -80px;
-      right: auto;
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .section {
-      padding: 1rem;
-    }
-    
-    .heroContent {
-      padding: 2rem 1.5rem;
-    }
-    
-    .timeline {
-      padding: 2rem 1.5rem;
-    }
-    
-    .timelineItem {
-      width: calc(100% - 60px);
-      margin-left: 60px !important;
-      padding: 1.5rem;
-    }
-    
-    .timelineItem .year {
-      left: -60px !important;
-      font-size: 1.5rem;
-    }
-    
-    .leaderCard {
-      padding: 1.5rem;
-    }
-    
-    .innovationContent {
-      padding: 2rem 1.5rem;
-    }
-    
-    .ctaContent {
-      padding: 2rem 1.5rem;
-    }
-    
-    .ctaButton {
-      min-width: 100%;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .heroTitle {
-      letter-spacing: 0.1em;
-    }
-    
-    .timelineItem {
-      width: calc(100% - 40px);
-      margin-left: 40px !important;
-      padding: 1rem;
-    }
-    
-    .timelineItem .year {
-      left: -40px !important;
-      font-size: 1.2rem;
-    }
-    
-    .leaderImage {
-      width: 100px;
-      height: 100px;
-    }
-  }
-  
-  /* Landscape orientation adjustments */
-  @media (max-height: 500px) and (orientation: landscape) {
-    .section {
-      height: auto;
-      min-height: 100vh;
-      padding: 1rem 0;
-    }
-    
-    .heroContent,
-    .timeline,
-    .innovationContent,
-    .ctaContent {
-      padding: 1.5rem;
-    }
-  }
+}

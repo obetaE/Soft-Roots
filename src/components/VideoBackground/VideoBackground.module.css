@@ -1,0 +1,11 @@
+.video {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: var(--ink);
+  filter: brightness(0.7);
+  pointer-events: none;
+}

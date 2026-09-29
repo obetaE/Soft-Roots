@@ -1,0 +1,42 @@
+.form {
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.row input {
+  flex: 1;
+  min-width: 0;
+}
+
+.row button {
+  padding-inline: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.stacked .row {
+  flex-direction: column;
+}
+
+.status {
+  min-height: 1.5em;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.success {
+  color: var(--success);
+}
+
+.error {
+  color: var(--danger);
+}
+
+@media (max-width: 480px) {
+  .row {
+    flex-direction: column;
+  }
+}

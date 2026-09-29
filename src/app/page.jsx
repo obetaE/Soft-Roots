@@ -1,174 +1,113 @@
-"use client";
-import { useRef, useEffect, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import CtaSection from "@/components/CtaSection/CtaSection";
+import VideoBackground from "@/components/VideoBackground/VideoBackground";
+import { getProduct } from "@/libs/products";
+import { site } from "@/libs/site";
+import ui from "@/components/ui/ui.module.css";
 import styles from "./home.module.css";
 
-const VideoScroll = () => {
-  const videoRef = useRef(null);
-  const containerRef = useRef(null);
-  const [videoDuration, setVideoDuration] = useState(0);
-  const scrolling = useRef(false);
-  const rafId = useRef(null);
-
-  // Initialize video and scroll container
-  useEffect(() => {
-    const video = videoRef.current;
-
-    const handleLoadedMetadata = () => {
-      setVideoDuration(video.duration);
-      // Set container height based on sections
-      containerRef.current.style.height = `500vh`; // 5 sections
-    };
-
-    video.addEventListener("loadedmetadata", handleLoadedMetadata);
-    video.play().catch(() => {}); // Auto-play with mute
-
-    return () => {
-      video.removeEventListener("loadedmetadata", handleLoadedMetadata);
-      if (rafId.current) cancelAnimationFrame(rafId.current);
-    };
-  }, []);
-
-  // Handle scroll events
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container || !videoDuration) return;
-
-    const updateVideoTime = () => {
-      const scrollTop = container.scrollTop;
-      const maxScroll = container.scrollHeight - window.innerHeight;
-      const scrollFraction = scrollTop / maxScroll;
-
-      // Calculate video time
-      const videoTime = (scrollFraction * videoDuration * 2) % videoDuration;
-      videoRef.current.currentTime = Math.min(videoTime, videoDuration);
-
-      scrolling.current = false;
-    };
-
-    const handleScroll = () => {
-      if (!scrolling.current) {
-        scrolling.current = true;
-        rafId.current = requestAnimationFrame(updateVideoTime);
-      }
-    };
-
-    container.addEventListener("scroll", handleScroll);
-    return () => container.removeEventListener("scroll", handleScroll);
-  }, [videoDuration]);
-
-  return (
-    <div className={styles.container} ref={containerRef}>
-      <video
-        ref={videoRef}
-        className={styles.videoBackground}
-        src="https://cdn.pixabay.com/video/2024/09/09/230471_tiny.mp4"
-        muted
-        playsInline
-        loop
-      />
-
-      {/* Section 1: Hero */}
-      <section className={`${styles.section} ${styles.heroSection}`}>
-        <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle}>SOFT ROOTS</h1>
-          <p className={styles.heroSubtitle}>Luxury Trucks Redefined</p>
-          <div className={styles.scrollIndicator}>
-            <span></span>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 2: Values */}
-      <section className={`${styles.section} ${styles.valuesSection}`}>
-        <div className={styles.contentCard}>
-          <h2>OUR VALUES</h2>
-          <div className={styles.valuesGrid}>
-            <div className={styles.valueItem}>
-              <div className={styles.valueIcon}>01</div>
-              <h3>Heritage Craftsmanship</h3>
-              <p>Traditional techniques meet modern engineering</p>
-            </div>
-            <div className={styles.valueItem}>
-              <div className={styles.valueIcon}>02</div>
-              <h3>Uncompromised Quality</h3>
-              <p>Premium materials for lasting performance</p>
-            </div>
-            <div className={styles.valueItem}>
-              <div className={styles.valueIcon}>03</div>
-              <h3>Innovative Design</h3>
-              <p>Future-forward thinking in every detail</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 3: Featured Model */}
-      <section className={`${styles.section} ${styles.modelSection}`}>
-        <div className={styles.modelCard}>
-          <div className={styles.modelInfo}>
-            <span className={styles.modelBadge}>NEW RELEASE</span>
-            <h2>PIONEER EDITION</h2>
-            <p>Luxury redefined with cutting-edge technology</p>
-            <ul className={styles.featureList}>
-              <li>• 550HP Twin-Turbo Engine</li>
-              <li>• Handcrafted Leather Interior</li>
-              <li>• Smart Suspension System</li>
-            </ul>
-            <button className={styles.ctaButton}>EXPLORE FEATURES</button>
-          </div>
-          <div className={styles.modelVisual}>
-            <div className={styles.circleBadge}>2024</div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 4: Technology */}
-      <section className={`${styles.section} ${styles.techSection}`}>
-        <div className={styles.techGrid}>
-          <div className={styles.techCard}>
-            <h3>
-              ADVANCED
-              <br />
-              SUSPENSION
-            </h3>
-            <p>Smart adaptive system for any terrain</p>
-          </div>
-          <div className={styles.techCard}>
-            <h3>
-              ECO
-              <br />
-              POWER
-            </h3>
-            <p>Hybrid technology with zero compromise</p>
-          </div>
-          <div className={styles.techCard}>
-            <h3>
-              DIGITAL
-              <br />
-              COCKPIT
-            </h3>
-            <p>Immersive driver experience</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 5: CTA */}
-      <section className={`${styles.section} ${styles.ctaSection}`}>
-        <div className={styles.ctaContent}>
-          <h2>READY FOR THE NEXT LEVEL?</h2>
-          <p>Schedule your exclusive test drive today</p>
-          <div className={styles.ctaButtons}>
-            <button className={`${styles.ctaButton} ${styles.primary}`}>
-              BOOK CONSULTATION
-            </button>
-            <button className={`${styles.ctaButton} ${styles.secondary}`}>
-              CALL: 1-800-SOFTROOTS
-            </button>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
+export const metadata = {
+  alternates: { canonical: "/" },
 };
 
-export default VideoScroll;
+const values = [
+  { title: "Curated Inventory", text: "Only trucks we would happily drive ourselves" },
+  { title: "In-House Customization", text: "Paint, suspension and interiors finished under our roof" },
+  { title: "Straight Answers", text: "Transparent pricing with no showroom pressure" },
+];
+
+const technology = [
+  { title: ["Custom", "Paint"], text: "Two-tone finishes mixed and sprayed in our booth" },
+  { title: ["Suspension", "Lab"], text: "Lift kits and all-terrain setups tuned per truck" },
+  { title: ["Digital", "Cockpit"], text: "Modern infotainment retrofitted into classic cabs" },
+];
+
+const flagship = getProduct("fjord-f100");
+
+export default function HomePage() {
+  return (
+    <div className={`${ui.page} ${ui.snapPage}`}>
+      <VideoBackground scrub />
+
+      <section className={ui.snapSection}>
+        <div className={styles.heroCard}>
+          <h1 className={styles.heroTitle}>{site.name}</h1>
+          <p className={styles.heroSubtitle}>{site.tagline}</p>
+          <a href="#values" className={styles.scrollIndicator} aria-label="Scroll to our values">
+            <span />
+          </a>
+        </div>
+      </section>
+
+      <section id="values" aria-labelledby="values-title" className={ui.snapSection}>
+        <div className={styles.contentCard}>
+          <h2 id="values-title">Our Values</h2>
+          <ol className={styles.valuesGrid}>
+            {values.map((value, index) => (
+              <li key={value.title} className={styles.valueItem}>
+                <span className={styles.valueNumber} aria-hidden="true">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3>{value.title}</h3>
+                <p>{value.text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section aria-labelledby="model-title" className={ui.snapSection}>
+        <article className={styles.modelCard}>
+          <div className={styles.modelInfo}>
+            <span className={styles.modelBadge}>Now Configurable</span>
+            <h2 id="model-title">Fjord F-100 Heritage</h2>
+            <p>Design yours in 3D, then drive it home</p>
+            <ul className={ui.featureList}>
+              {flagship.features.map((feature) => (
+                <li key={feature}>{feature}</li>
+              ))}
+            </ul>
+            <Link href="/build" className={`${ui.btn} ${ui.btnPrimary}`}>
+              Build Your Own
+            </Link>
+          </div>
+          <div className={styles.modelVisual}>
+            <Image
+              src={flagship.image}
+              alt="The Fjord F-100 Heritage at the Soft Roots showroom"
+              fill
+              sizes="(min-width: 768px) 500px, 100vw"
+            />
+            <span className={styles.yearBadge}>2026</span>
+          </div>
+        </article>
+      </section>
+
+      <section aria-labelledby="tech-title" className={ui.snapSection}>
+        <h2 id="tech-title" className="visually-hidden">
+          Technology
+        </h2>
+        <ul className={styles.techGrid}>
+          {technology.map((item) => (
+            <li key={item.text} className={styles.techCard}>
+              <h3>
+                {item.title[0]}
+                <br />
+                {item.title[1]}
+              </h3>
+              <p>{item.text}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <CtaSection
+        title="Ready for the next level?"
+        text="Schedule your exclusive test drive today"
+        action={{ href: "/book", label: "Book Consultation" }}
+        className={`${ui.snapSection} ${ui.ctaCard}`}
+      />
+    </div>
+  );
+}

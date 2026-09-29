@@ -1,144 +1,77 @@
-import React from "react";
-import styles from "./Footer.module.css";
 import Link from "next/link";
-import Image from "next/image";
+import NewsletterForm from "@/components/NewsletterForm/NewsletterForm";
+import { navLinks, site } from "@/libs/site";
+import styles from "./Footer.module.css";
 
-const Footer = () => {
+const footerLinks = [
+  ...navLinks,
+  { path: "/build", title: "Build Your Truck" },
+  { path: "/book", title: "Book a Test Drive" },
+  { path: "/cart", title: "Cart" },
+];
+
+export default function Footer() {
   return (
-    <div className={styles.container}>
-      <div className={styles.top}>
-        <p>Join Our NewsLetter</p>
-        <form className={styles.subscribe}>
-          <input type="email" placeholder="Enter your email"></input>
-          <button className={styles.button}>Subscribe</button>
-        </form>
+    <footer className={styles.footer}>
+      <div className={styles.newsletter}>
+        <div className={styles.newsletterCopy}>
+          <h2 className={styles.newsletterTitle}>Join the Soft Roots Circle</h2>
+          <p>Model reveals, private events, and stories from the workshop, delivered monthly.</p>
+        </div>
+        <NewsletterForm />
       </div>
-      <div className={styles.bottom}>
-        <table className={styles.table}>
-          <thead className={styles.thead}>
-            <tr>
-              <th>
-                
-              </th>
-              <th>Follow us on our Socials</th>
-              <th>Opening Hours</th>
-              <th>Quick Links</th>
-            </tr>
-          </thead>
-          <tbody className={styles.tbody}>
-            <tr>
-              <td className="pr-3">
-                <Link href="/" className={styles.links}>
-                  <Image
-                    src="https://res.cloudinary.com/dudlxsoui/image/upload/v1733071562/Instagram_iccqog.png"
-                    alt="Instagram"
-                    width={50}
-                    height={50}
-                  />
-                </Link>
-              </td>
-              <td>
-                <div className={styles.socials}>
-                  <span>On Instagram @GammaSuite</span>
-                </div>
-              </td>
-              <td>Mondays: 9:00am - 9:00pm</td>
-              <td>
-                <Link href="/room">Rooms & Suites</Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link
-                  href="/"
-                  className={styles.links}
-                >
-                  <Image
-                    src="https://res.cloudinary.com/dudlxsoui/image/upload/v1733071562/Facebook_hdstbv.png"
-                    alt="Facebook"
-                    width={30}
-                    height={40}
-                  />
-                </Link>
-              </td>
-              <td>
-                <div className={styles.socials}>
-                  <span>On Facebook @GammaSuite</span>
-                </div>
-              </td>
-              <td>Tuesdays: 9:00am - 9:00pm</td>
-              <td>
-                <Link href="/explore">Explore</Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link href="/" className={styles.links}>
-                  <Image
-                    src="https://res.cloudinary.com/dudlxsoui/image/upload/v1737677762/Untitled_design_5_jvxoou.png"
-                    alt="Reservation"
-                    width={30}
-                    height={30}
-                  />
-                </Link>
-              </td>
-              <td>
-                <div className={styles.socials}>
-                  <span>Make A Reservation @+2348051025661</span>
-                </div>
-              </td>
-              <td>Wednesdays: 9:00am - 9:00pm</td>
-              <td>
-                <Link href="/gallery">Gallery</Link>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <Link
-                  href="/"
-                  className={styles.links}
-                >
-                  <Image
-                    src="https://res.cloudinary.com/dudlxsoui/image/upload/v1733071562/Twitter_nk36mk.png"
-                    alt="Twitter"
-                    width={30}
-                    height={30}
-                  />
-                </Link>
-              </td>
-              <td>
-                <div className={styles.socials}>
-                  <span>On Twitter @GammaSuite</span>
-                </div>
-              </td>
-              <td>Thursdays: 9:00am - 9:00pm</td>
-              <td>
-                <Link href="/contact">Contact Us</Link>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td>Fridays: 9:00am - 9:00pm</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td>Saturdays: 9:00am - 11:00pm</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td>Sundays: 12:00am - 10:00pm</td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  );
-};
 
-export default Footer;
+      <div className={styles.grid}>
+        <div className={styles.brand}>
+          <Link href="/" className={styles.logo}>
+            Soft Roots
+          </Link>
+          <p>{site.description}</p>
+        </div>
+
+        <nav aria-label="Footer">
+          <h2 className={styles.heading}>Explore</h2>
+          <ul className={styles.list}>
+            {footerLinks.map((link) => (
+              <li key={link.path}>
+                <Link href={link.path}>{link.title}</Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div>
+          <h2 className={styles.heading}>Contact</h2>
+          <address className={styles.list}>
+            <a href={site.phone.href}>{site.phone.numeric}</a>
+            <a href={`mailto:${site.email.info}`}>{site.email.info}</a>
+            <a href={site.address.mapsUrl} target="_blank" rel="noopener noreferrer">
+              {site.address.street}
+              <br />
+              {site.address.city}
+            </a>
+          </address>
+        </div>
+
+        <div>
+          <h2 className={styles.heading}>Showroom Hours</h2>
+          <dl className={styles.hours}>
+            {site.hours.map((entry) => (
+              <div key={entry.days}>
+                <dt>{entry.days}</dt>
+                <dd>{entry.time}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+
+      <div className={styles.bottom}>
+        <p>© {new Date().getFullYear()} Soft Roots. All rights reserved.</p>
+        <p>
+          A portfolio concept. Soft Roots is a fictional dealership. <Link href="/terms">Terms &amp; Credits</Link>
+        </p>
+      </div>
+    </footer>
+  );
+}

@@ -1,126 +1,191 @@
-import styles from "../blog.module.css";
-import { blogPosts } from "@/libs/blogData";
+import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import Link from "next/link"
+import CtaSection from "@/components/CtaSection/CtaSection";
+import VideoBackground from "@/components/VideoBackground/VideoBackground";
+import { blogPosts, getPost, toIsoDate } from "@/libs/blogData";
+import { site } from "@/libs/site";
+import ui from "@/components/ui/ui.module.css";
+import styles from "../blog.module.css";
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return blogPosts.map((post) => ({ id: String(post.id) }));
+}
+
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const post = getPost(id);
+  if (!post) return {};
+
+  const path = `/blog/${post.id}`;
+  return {
+    title: post.title,
+    description: post.excerpt,
+    alternates: { canonical: path },
+    openGraph: {
+      type: "article",
+      url: path,
+      title: post.title,
+      description: post.excerpt,
+      publishedTime: toIsoDate(post.date),
+      authors: [post.author],
+      images: [{ url: post.image, alt: post.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: [post.image],
+    },
+  };
+}
+
+const initials = (name) =>
+  name
+    .split(" ")
+    .map((part) => part[0])
+    .join("");
 
 export default async function BlogPostPage({ params }) {
-  const postId = await parseInt(params.id);
-  const post = blogPosts.find((p) => p.id === postId);
+  const { id } = await params;
+  const post = getPost(id);
+  if (!post) notFound();
 
-  if (!post) return notFound();
+  const url = `${site.url}/blog/${post.id}`;
+  const isoDate = toIsoDate(post.date);
+
+  // Prefer the same category, then fill with other recent articles.
+  const others = blogPosts.filter((candidate) => candidate.id !== post.id);
+  const related = [
+    ...others.filter((candidate) => candidate.category === post.category),
+    ...others.filter((candidate) => candidate.category !== post.category),
+  ].slice(0, 3);
+
+  const shareLinks = [
+    {
+      label: "X",
+      href: `https://x.com/intent/post?url=${encodeURIComponent(url)}&text=${encodeURIComponent(post.title)}`,
+    },
+    { label: "Facebook", href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}` },
+    { label: "LinkedIn", href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}` },
+  ];
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    image: new URL(post.image, site.url).href,
+    datePublished: isoDate,
+    author: { "@type": "Person", name: post.author },
+    publisher: { "@type": "Organization", name: site.name },
+    mainEntityOfPage: url,
+  };
 
   return (
-    <div className={styles.container}>
-      <video
-        className={styles.videoBackground}
-        src="https://cdn.pixabay.com/video/2024/09/09/230471_tiny.mp4"
-        muted
-        playsInline
-        loop
-        autoPlay
+    <div className={ui.page}>
+      <VideoBackground />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
 
-      {/* Hero Section */}
-      <section className={styles.heroSection}>
-        <div className={styles.heroContent}>
-          <h1 className={styles.heroTitle}>{post.title}</h1>
-          <p className={styles.heroSubtitle}>
-            By {post.author} • {post.date}
+      <section className={ui.hero}>
+        <div className={ui.heroCard}>
+          <span className={ui.eyebrow}>{post.category}</span>
+          <h1 className={`${ui.heroTitle} ${styles.articleTitle}`}>{post.title}</h1>
+          <p className={ui.heroSubtitle}>
+            By {post.author} · <time dateTime={isoDate}>{post.date}</time>
           </p>
         </div>
       </section>
 
-      {/* Blog Post Content */}
-      <section className={styles.blogPostSection}>
-        <div className={styles.blogPostContainer}>
-          <div
-            className={styles.postFeaturedImage}
-            style={{ backgroundImage: `url(${post.image})` }}
-          />
-
-          <div className={styles.postContent}>
-            <div className={styles.postMeta}>
-              <span className={styles.postCategory}>{post.category}</span>
-              <span className={styles.postDate}>{post.date}</span>
-            </div>
-
-            {/* Render HTML content safely */}
-            <div
-              className={styles.postBody}
-              dangerouslySetInnerHTML={{ __html: post.content }}
+      <article className={ui.band}>
+        <div className={styles.article}>
+          <div className={styles.featuredImage}>
+            <Image
+              src={post.image}
+              alt=""
+              fill
+              loading="eager"
+              fetchPriority="high"
+              sizes="(min-width: 1140px) 1100px, 100vw"
             />
+          </div>
 
-            <div className={styles.postFooter}>
-              <div className={styles.authorInfo}>
-                <div className={styles.authorAvatar} />
+          <div className={`${ui.card} ${styles.articleBody}`}>
+            {/* Trusted, first-party HTML from src/libs/blogData.js. Never render user input this way. */}
+            <div className={styles.prose} dangerouslySetInnerHTML={{ __html: post.content }} />
+
+            <footer className={styles.articleFooter}>
+              <div className={styles.author}>
+                <span className={styles.avatar} aria-hidden="true">
+                  {initials(post.author)}
+                </span>
                 <div>
-                  <h4>{post.author}</h4>
-                  <p>Senior Automotive Journalist</p>
+                  <p className={styles.authorName}>{post.author}</p>
+                  <p className={styles.authorRole}>Soft Roots Journal</p>
                 </div>
               </div>
 
-              <div className={styles.shareSection}>
-                <h4>Share this article</h4>
-                <div className={styles.shareButtons}>
-                  <button>Twitter</button>
-                  <button>Facebook</button>
-                  <button>LinkedIn</button>
-                </div>
+              <div>
+                <h2 className={styles.shareTitle}>Share this article</h2>
+                <ul className={styles.shareLinks}>
+                  {shareLinks.map((link) => (
+                    <li key={link.label}>
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`${ui.btn} ${ui.btnOutline} ${styles.shareButton}`}
+                      >
+                        {link.label}
+                        <span className="visually-hidden"> (opens in a new tab)</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
+            </footer>
 
-            <Link href="/blog" className={styles.backButton}>
-              ← Back to Blog
+            <Link href="/blog" className={styles.backLink}>
+              ← Back to Journal
             </Link>
           </div>
         </div>
-      </section>
+      </article>
 
-      {/* Related Posts */}
-      <section className={styles.relatedSection}>
-        <h2>Related Articles</h2>
-        <div className={styles.relatedGrid}>
-          {blogPosts
-            .filter((p) => p.id !== post.id && p.category === post.category)
-            .slice(0, 3)
-            .map((related) => (
-              <article key={related.id} className={styles.relatedCard}>
-                <div
-                  className={styles.relatedImage}
-                  style={{ backgroundImage: `url(${related.image})` }}
-                />
-                <div className={styles.relatedContent}>
-                  <span className={styles.relatedCategory}>
-                    {related.category}
-                  </span>
-                  <h3>{related.title}</h3>
-                  <Link
-                    href={`/blog/${related.id}`}
-                    className={styles.readMore}
-                  >
-                    Read Article →
-                  </Link>
+      <section aria-labelledby="related-title" className={`${ui.band} ${ui.bandAlt}`}>
+        <div className={ui.container}>
+          <h2 id="related-title" className={`${ui.sectionTitle} ${ui.sectionTitleCenter}`}>
+            Related Articles
+          </h2>
+          <ul className={styles.relatedGrid}>
+            {related.map((article) => (
+              <li key={article.id} className={`${ui.card} ${styles.relatedCard}`}>
+                <div className={styles.relatedImage}>
+                  <Image src={article.image} alt="" fill sizes="(min-width: 1024px) 33vw, 100vw" />
                 </div>
-              </article>
+                <div className={styles.relatedContent}>
+                  <span className={ui.tag}>{article.category}</span>
+                  <h3>
+                    <Link href={`/blog/${article.id}`} className={styles.stretchedLink}>
+                      {article.title}
+                    </Link>
+                  </h3>
+                  <span className={styles.readMore} aria-hidden="true">
+                    Read Article →
+                  </span>
+                </div>
+              </li>
             ))}
+          </ul>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className={styles.ctaSection}>
-              <div className={styles.ctaContent}>
-                <h2>READY TO EXPERIENCE LUXURY?</h2>
-                <p>Schedule your private consultation today</p>
-                <div className={styles.ctaButtons}>
-                  <button className={`${styles.ctaButton} ${styles.primary}`}>
-                    BOOK A TEST DRIVE
-                  </button>
-                  <button className={`${styles.ctaButton} ${styles.secondary}`}>
-                    CALL NOW: 1-800-SOFTROOTS
-                  </button>
-                </div>
-              </div>
-            </section>
+      <CtaSection />
     </div>
   );
 }
